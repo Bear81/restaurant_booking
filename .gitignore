@@ -13,7 +13,7 @@ media/
 .vscode/
 
 # Environment variables
-.env
+env.py
 
 # Build artifacts
 staticfiles/
