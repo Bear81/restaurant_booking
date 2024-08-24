@@ -1,0 +1,22 @@
+# Django
+*.pyc
+__pycache__/
+myvenv/
+db.sqlite3
+media/
+
+# macOS
+.DS_Store
+
+# Editor and IDE specific files
+.idea/
+.vscode/
+
+# Environment variables
+.env
+
+# Build artifacts
+staticfiles/
+
+# Local settings
+local_settings.py
