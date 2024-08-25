@@ -1,0 +1,362 @@
+/* General Styles */
+body {
+    font-family: 'Helvetica Neue', Arial, sans-serif;
+    color: #333;
+    background-color: #f9f9f9;
+    margin: 0;
+    padding: 0;
+}
+
+a {
+    text-decoration: none;
+    color: #333;
+    transition: color 0.3s ease;
+}
+
+a:hover {
+    color: #e94f2e; /* Accent color for hover states */
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: 'Georgia', serif;
+    color: #222;
+    margin-bottom: 1rem;
+}
+
+p {
+    line-height: 1.6;
+    margin-bottom: 1.5rem;
+}
+
+ul {
+    list-style: none;
+    padding: 0;
+}
+
+/* Header and Navbar */
+header {
+    background-color: #fff;
+    border-bottom: 1px solid #ddd;
+    padding: 1rem 2rem;
+}
+
+nav ul {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+nav ul li {
+    margin: 0 1rem;
+}
+
+nav ul li a {
+    font-weight: bold;
+    font-size: 1rem;
+}
+
+/* Hero Section */
+.hero {
+    background: url('../images/hero-image.jpg') no-repeat center center/cover;
+    color: #fff;
+    text-align: center;
+    padding: 5rem 2rem;
+    position: relative;
+}
+
+.hero h1 {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+}
+
+.hero p {
+    font-size: 1.5rem;
+    margin-bottom: 2rem;
+}
+
+.cta-button {
+    background-color: #e94f2e;
+    color: #fff;
+    padding: 0.75rem 1.5rem;
+    border-radius: 25px;
+    text-transform: uppercase;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+}
+
+.cta-button:hover {
+    background-color: #d44124;
+}
+
+/* Featured Dishes Section */
+.featured-dishes {
+    padding: 4rem 2rem;
+    background-color: #fff;
+}
+
+.featured-dishes h2 {
+    text-align: center;
+    font-size: 2.5rem;
+    margin-bottom: 2rem;
+}
+
+.dishes {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+}
+
+.dish {
+    background-color: #f5f5f5;
+    padding: 2rem;
+    margin: 1rem;
+    text-align: center;
+    border-radius: 10px;
+    transition: box-shadow 0.3s ease;
+}
+
+.dish:hover {
+    box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.dish img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 10px;
+}
+
+.dish h3 {
+    margin-top: 1rem;
+    font-size: 1.5rem;
+}
+
+/* Testimonials Section */
+.testimonials {
+    padding: 4rem 2rem;
+    background-color: #f9f9f9;
+    text-align: center;
+}
+
+.testimonials h2 {
+    font-size: 2.5rem;
+    margin-bottom: 2rem;
+}
+
+.testimonials-grid {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+}
+
+.testimonial {
+    background-color: #fff;
+    padding: 2rem;
+    margin: 1rem;
+    text-align: center;
+    border-radius: 10px;
+    max-width: 300px;
+    transition: box-shadow 0.3s ease;
+}
+
+.testimonial:hover {
+    box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.testimonial p {
+    font-style: italic;
+}
+
+/* Menu Page */
+.menus {
+    padding: 4rem 2rem;
+    background-color: #fff;
+}
+
+.menu-item {
+    margin-bottom: 2rem;
+    padding: 1rem;
+    background-color: #f5f5f5;
+    border-radius: 10px;
+    transition: box-shadow 0.3s ease;
+}
+
+.menu-item:hover {
+    box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.menu-item img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 10px;
+}
+
+.menu-item h2 {
+    margin-top: 1rem;
+    font-size: 1.5rem;
+}
+
+/* About Us Page */
+.about-us {
+    padding: 4rem 2rem;
+    background-color: #f9f9f9;
+}
+
+.about-us h1 {
+    text-align: center;
+    font-size: 3rem;
+    margin-bottom: 2rem;
+}
+
+.history, .team, .gallery {
+    margin-bottom: 4rem;
+}
+
+.team-members {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+}
+
+.member {
+    text-align: center;
+    margin: 1rem;
+    padding: 2rem;
+    background-color: #fff;
+    border-radius: 10px;
+    transition: box-shadow 0.3s ease;
+}
+
+.member:hover {
+    box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.member img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 50%;
+}
+
+.member h3 {
+    margin-top: 1rem;
+    font-size: 1.5rem;
+}
+
+/* Gallery */
+.gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1rem;
+}
+
+.gallery-item img {
+    width: 100%;
+    height: auto;
+    border-radius: 10px;
+}
+
+/* Footer */
+footer {
+    background-color: #222;
+    color: #fff;
+    padding: 2rem;
+    text-align: center;
+}
+
+footer ul {
+    display: flex;
+    justify-content: center;
+    padding: 0;
+}
+
+footer ul li {
+    margin: 0 1rem;
+}
+
+footer ul li a {
+    color: #fff;
+    transition: color 0.3s ease;
+}
+
+footer ul li a:hover {
+    color: #e94f2e;
+}
+
+footer p {
+    margin-top: 1rem;
+    font-size: 0.875rem;
+}
+
+/* Booking Form */
+.booking-form {
+    padding: 4rem 2rem;
+    background-color: #fff;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.booking-form h1 {
+    text-align: center;
+    margin-bottom: 2rem;
+    font-size: 2.5rem;
+}
+
+.booking-form form {
+    display: flex;
+    flex-direction: column;
+}
+
+.booking-form form input,
+.booking-form form select,
+.booking-form form textarea {
+    padding: 0.75rem;
+    margin-bottom: 1rem;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 1rem;
+    font-family: inherit;
+}
+
+.booking-form form button {
+    padding: 0.75rem;
+    background-color: #e94f2e;
+    color: #fff;
+    border: none;
+    border-radius: 25px;
+    font-size: 1rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.booking-form form button:hover {
+    background-color: #d44124;
+}
+
+/* Booking Confirmation */
+.booking-confirmation {
+    padding: 4rem 2rem;
+    text-align: center;
+    background-color: #fff;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.booking-confirmation h1 {
+    margin-bottom: 2rem;
+    font-size: 2.5rem;
+}
+
+.booking-confirmation p {
+    margin-bottom: 1.5rem;
+    font-size: 1.125rem;
+}
+
+.booking-confirmation ul {
+    list-style: none;
+    padding: 0;
+}
+
+.booking-confirmation ul li {
+    margin-bottom: 1rem;
+    font-size: 1rem;
+}
