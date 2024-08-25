@@ -1,0 +1,20 @@
+{% extends 'website/base.html' %}
+
+{% block title %}{{ menu.title }}{% endblock %}
+
+{% block content %}
+<section class="menu-detail">
+    <div class="hero">
+        <img src="{{ menu.hero_image.url }}" alt="{{ menu.title }}">
+        <h1>{{ menu.title }}</h1>
+    </div>
+    <div class="menu-items">
+        <h2>Menu Items</h2>
+        <ul>
+            {% for item in menu.items %}
+                <li>{{ item.name }} - {{ item.price }}</li>
+            {% endfor %}
+        </ul>
+    </div>
+</section>
+{% endblock %}

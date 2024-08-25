@@ -1,0 +1,36 @@
+{% extends 'website/base.html' %}
+
+{% block title %}Home{% endblock %}
+
+{% block content %}
+<section class="hero">
+    <h1>Welcome to Our Restaurant</h1>
+    <p>Discover our delicious menu and cozy atmosphere.</p>
+    <a href="{% url 'menus' %}" class="cta-button">Explore Our Menus</a>
+</section>
+
+<section class="featured-dishes">
+    <h2>Featured Dishes</h2>
+    <div class="dishes">
+        <!-- Example dish -->
+        <div class="dish">
+            <img src="{% static 'website/images/dish1.jpg' %}" alt="Dish Name">
+            <h3>Dish Name</h3>
+            <p>Brief description of the dish.</p>
+        </div>
+        <!-- Repeat for other dishes -->
+    </div>
+</section>
+
+<section class="testimonials">
+    <h2>What Our Customers Say</h2>
+    <div class="testimonials-grid">
+        <!-- Example testimonial -->
+        <div class="testimonial">
+            <p>"This is the best restaurant in town!"</p>
+            <p>- Customer Name</p>
+        </div>
+        <!-- Repeat for other testimonials -->
+    </div>
+</section>
+{% endblock %}

@@ -1,0 +1,18 @@
+{% extends 'website/base.html' %}
+
+{% block title %}Booking Confirmation{% endblock %}
+
+{% block content %}
+<section class="booking-confirmation">
+    <h1>Thank You for Your Booking!</h1>
+    <p>Your booking is {{ booking.status }}.</p>
+    <p><strong>Details:</strong></p>
+    <ul>
+        <li>Date and Time: {{ booking.booking_datetime }}</li>
+        <li>Table: {{ booking.table }}</li>
+        <li>Number of Guests: {{ booking.number_of_guests }}</li>
+        <li>Special Requests: {{ booking.special_requests }}</li>
+    </ul>
+    <a href="{% url 'home' %}" class="cta-button">Return to Home</a>
+</section>
+{% endblock %}

@@ -1,42 +1,38 @@
-HTML
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">   
-
-    <title>Welcome to My Restaurant</title>   
-
-    {% load static %}  {# Load the static template tag #}
-    <link rel="stylesheet" href="{% static 'css/style.css' %}"> 
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Restaurant{% endblock %}</title>
+    <link rel="stylesheet" href="{% static 'website/css/style.css' %}">
+    {% block extra_head %}{% endblock %}
 </head>
 <body>
-
     <header>
-        <h1>Welcome to My Restaurant</h1>
+        <nav>
+            <ul>
+                <li><a href="{% url 'home' %}">Home</a></li>
+                <li><a href="{% url 'menus' %}">Menus</a></li>
+                <li><a href="{% url 'about_us' %}">About Us</a></li>
+                <li><a href="{% url 'contact_us' %}">Contact Us</a></li>
+            </ul>
+        </nav>
     </header>
 
     <main>
-        <section>
-            <h2>About Us</h2>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
-               Nulla nec purus feugiat, molestie ipsum et, consequat nibh.</p>
-        </section>
-
-        <section>   
-
-            <h2>Our Menu</h2>
-            <ul>
-                <li>Dish 1</li>
-                <li>Dish 2</li>
-                <li>Dish 3</li>
-            </ul>
-        </section>
+        {% block content %}{% endblock %}
     </main>
 
     <footer>
-        <p>&copy; 2023 My Restaurant</p>
+        <p>&copy; {{ current_year }} Restaurant. All rights reserved.</p>
+        <ul>
+            <li><a href="#">Facebook</a></li>
+            <li><a href="#">Instagram</a></li>
+            <li><a href="#">Twitter</a></li>
+        </ul>
     </footer>
-
+    
+    <script src="{% static 'website/js/scripts.js' %}"></script>
+    {% block extra_js %}{% endblock %}
 </body>
 </html>

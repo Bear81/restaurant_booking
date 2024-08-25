@@ -1,0 +1,38 @@
+{% extends 'website/base.html' %}
+
+{% block title %}About Us{% endblock %}
+
+{% block content %}
+<section class="about-us">
+    <h1>About Our Restaurant</h1>
+    
+    <section class="history">
+        <h2>Our History</h2>
+        <p><!-- Insert history here --></p>
+    </section>
+    
+    <section class="team">
+        <h2>Meet the Team</h2>
+        <div class="team-members">
+            {% for member in team_members %}
+                <div class="member">
+                    <img src="{{ member.photo.url }}" alt="{{ member.name }}">
+                    <h3>{{ member.name }}</h3>
+                    <p>{{ member.position }}</p>
+                </div>
+            {% endfor %}
+        </div>
+    </section>
+    
+    <section class="gallery">
+        <h2>Our Gallery</h2>
+        <div class="gallery-grid">
+            {% for image in gallery_images %}
+                <div class="gallery-item">
+                    <img src="{{ image.url }}" alt="Gallery Image">
+                </div>
+            {% endfor %}
+        </div>
+    </section>
+</section>
+{% endblock %}
