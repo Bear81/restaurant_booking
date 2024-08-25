@@ -3,8 +3,9 @@ from django.contrib.auth.models import User
 
 # Create your models here.
 
+
 class Booking(models.Model):
-    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='bookings')
+    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='bookings')  # noqaE501
     table = models.OneToOneField('Table', on_delete=models.CASCADE)
     booking_datetime = models.DateTimeField()
     number_of_guests = models.PositiveIntegerField()
@@ -17,7 +18,7 @@ class Booking(models.Model):
 
 
 class Table(models.Model):
-    table_number = models.CharField(max_length='10', unique=True)
+    table_number = models.CharField(max_length=10, unique=True)
     capacity = models.PositiveIntegerField()
 
     def __str__(self):
