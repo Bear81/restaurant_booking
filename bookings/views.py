@@ -31,19 +31,19 @@ def update_booking(request, pk):
         if form.is_valid():
             form.save()
             # Optionally send confirmation email here
-            return redirect('booking_list')
+            return redirect('profile')
     else:
         form = BookingForm(instance=booking)
-    return render(request, 'booking_form.html', {'form': form})
+    return render(request, 'bookings/booking_form.html', {'form': form})
 
 
 @login_required
 def cancel_booking(request, pk):
     booking = get_object_or_404(Booking, pk=pk, user=request.user)
-    booking.status = 'rejected'  # Adjusted to match your model's status choices
+    booking.status = 'cancelled'
     booking.save()
     # Optionally send cancellation email here
-    return redirect('booking_list')
+    return redirect('profile')
 
 
 @login_required

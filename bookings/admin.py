@@ -9,6 +9,7 @@ class BookingAdmin(admin.ModelAdmin):
                     'number_of_guests', 'status')
     list_filter = ('status', 'booking_datetime', 'table')
     search_fields = ('user__username', 'table__table_number')
+    ordering = ('-booking_datetime',)
 
 
 admin.site.register(Booking, BookingAdmin)

@@ -5,13 +5,21 @@ from django.contrib.auth.models import User
 
 
 class Booking(models.Model):
-    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='bookings')  # noqaE501
+    STATUS_CHOICES = [
+        ('pending', 'Pending'),
+        ('confirmed', 'Confirmed'),
+        ('rejected', 'Rejected'),
+        ('cancelled', 'Cancelled'),
+    ]
+
+    user = models.ForeignKey(
+        User, on_delete=models.CASCADE, related_name='bookings')
     table = models.OneToOneField(
-        'Table', on_delete=models.CASCADE, blank=True, null=True)
+        'Table', on_delete=models.CASCADE, null=True, blank=True)
     booking_datetime = models.DateTimeField()
     number_of_guests = models.PositiveIntegerField()
-    status = models.CharField(max_length=10, choices=[('pending', 'Pending'), (
-        'confirmed', 'Confirmed'), ('rejected', 'Rejected')], default='pending')
+    status = models.CharField(
+        max_length=10, choices=STATUS_CHOICES, default='pending')
     special_requests = models.TextField(blank=True)
 
     def __str__(self):
