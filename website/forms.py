@@ -1,5 +1,6 @@
 from django import forms
 from bookings.models import Booking
+from django.utils import timezone
 
 
 class BookingForm(forms.ModelForm):

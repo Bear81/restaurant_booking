@@ -17,6 +17,13 @@
         
         <div class="col-md-6">
             <h2>Make a Booking</h2>
+
+            {% if success_message %}
+                <div class="alert alert-success" role="alert">
+                    {{ success_message }}
+                </div>
+            {% endif %}
+
             <form method="post">
                 {% csrf_token %}
                 {{ form.as_p }}

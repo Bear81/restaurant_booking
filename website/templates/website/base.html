@@ -16,6 +16,15 @@
                 <li><a href="{% url 'menu_list' %}">Menus</a></li>
                 <li><a href="{% url 'about_us' %}">About Us</a></li>
                 <li><a href="{% url 'contact_us' %}">Contact Us</a></li>
+
+                <!-- Authentication Links -->
+                {% if user.is_authenticated %}
+                    <li><a href="{% url 'account_logout' %}">Logout</a></li>
+                    <li><a href="{% url 'profile' %}">Profile</a></li>  <!-- Assuming a profile page exists -->
+                {% else %}
+                    <li><a href="{% url 'account_login' %}">Login</a></li>
+                    <li><a href="{% url 'account_signup' %}">Sign Up</a></li>
+                {% endif %}
             </ul>
         </nav>
     </header>

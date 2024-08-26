@@ -1,0 +1,14 @@
+{% extends 'website/base.html' %}
+
+{% block title %}Your Profile{% endblock %}
+
+{% block content %}
+<div class="container">
+    <h1>Your Bookings</h1>
+    <ul>
+        {% for booking in bookings %}
+            <li>{{ booking.booking_datetime }} - {{ booking.number_of_guests }} guests - {{ booking.status }}</li>
+        {% endfor %}
+    </ul>
+</div>
+{% endblock %}

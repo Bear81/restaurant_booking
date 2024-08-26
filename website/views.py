@@ -1,7 +1,8 @@
 from django.shortcuts import render, get_object_or_404
+from django.contrib.auth.decorators import login_required
 from website.forms import BookingForm
-from .models import WebsiteImage
-from .models import MenuPost
+from bookings.models import Booking
+from .models import WebsiteImage, MenuPost
 
 # Create your views here.
 
@@ -31,7 +32,7 @@ def menus(request):
 
 def about_us(request):
     history_image = WebsiteImage.objects.filter(
-    category='history_background').first()
+        category='history_background').first()
     team_members = WebsiteImage.objects.filter(category='team_member')
     gallery_images = WebsiteImage.objects.filter(category='gallery')
 
@@ -43,19 +44,26 @@ def about_us(request):
     return render(request, 'website/about_us.html', context)
 
 
+@login_required
 def contact_us(request):
+    success_message = None
     if request.method == 'POST':
         form = BookingForm(request.POST)
         if form.is_valid():
             booking = form.save(commit=False)
             booking.user = request.user
             booking.save()
-            # Optionally send confirmation email here
-            # Redirect to a booking list or confirmation page
-            return redirect('booking_list')
+            success_message = "Thank you! Your booking has been received."
+            form = BookingForm()  # Reset the form after successful submission
     else:
         form = BookingForm()
-    return render(request, 'website/contact_us.html', {'form': form})
+    return render(request, 'website/contact_us.html', {'form': form, 'success_message': success_message})
+
+
+@login_required
+def profile(request):
+    bookings = Booking.objects.filter(user=request.user)
+    return render(request, 'website/profile.html', {'bookings': bookings})
 
 
 def menu_list(request):
@@ -66,3 +74,7 @@ def menu_list(request):
 def menu_detail(request, pk):
     post = get_object_or_404(MenuPost, pk=pk)
     return render(request, 'website/menu_detail.html', {'post': post})
+
+
+def booking_confirmation(request):
+    return render(request, 'website/booking_confirmation.html')
