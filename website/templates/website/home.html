@@ -1,9 +1,7 @@
 {% extends 'website/base.html' %}
 
-{% block title %}Home{% endblock %}
-
 {% block content %}
-<section class="hero">
+<section class="hero" style="background-image: url('{{ hero_image.image_url }}');">
     <h1>Welcome to Our Restaurant</h1>
     <p>Discover our delicious menu and cozy atmosphere.</p>
     <a href="{% url 'menus' %}" class="cta-button">Explore Our Menus</a>
@@ -12,17 +10,17 @@
 <section class="featured-dishes">
     <h2>Featured Dishes</h2>
     <div class="dishes">
-        <!-- Example dish -->
+        {% for dish in featured_dishes %}
         <div class="dish">
-            <img src="{% static 'website/images/dish1.jpg' %}" alt="Dish Name">
-            <h3>Dish Name</h3>
-            <p>Brief description of the dish.</p>
+            <img src="{{ dish.image_url }}" alt="{{ dish.name }}">
+            <h3>{{ dish.name }}</h3>
+            <p>{{ dish.description }}</p>
         </div>
-        <!-- Repeat for other dishes -->
+        {% endfor %}
     </div>
 </section>
 
-<section class="testimonials">
+<section class="testimonials" style="background-image: url('{{ testimonial_background.image_url }}');">
     <h2>What Our Customers Say</h2>
     <div class="testimonials-grid">
         <!-- Example testimonial -->

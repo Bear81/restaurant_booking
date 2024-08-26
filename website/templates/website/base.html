@@ -1,10 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    {% load static %}
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{% block title %}Restaurant{% endblock %}</title>
-    <link rel="stylesheet" href="{% static 'website/css/style.css' %}">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
     {% block extra_head %}{% endblock %}
 </head>
 <body>
@@ -32,7 +33,7 @@
         </ul>
     </footer>
     
-    <script src="{% static 'website/js/scripts.js' %}"></script>
+    <script src="{% static 'js/scripts.js' %}"></script>
     {% block extra_js %}{% endblock %}
 </body>
 </html>
