@@ -1,0 +1,22 @@
+{% extends 'website/base.html' %}
+
+{% block title %}Our Menus{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+    <h1>Our Menus</h1>
+    <div class="row">
+        {% for post in posts %}
+        <div class="col-md-4">
+            <div class="card mb-4">
+                <div class="card-body">
+                    <h5 class="card-title">{{ post.title }}</h5>
+                    <p class="card-text">{{ post.content | safe }}</p>
+                    <a href="{% url 'menu_detail' post.pk %}" class="btn btn-primary">Read More</a>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

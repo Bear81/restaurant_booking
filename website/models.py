@@ -2,6 +2,7 @@ from django.db import models
 import cloudinary
 import cloudinary.uploader
 import cloudinary.models
+from django_summernote.fields import SummernoteTextField
 
 # Create your models here.
 
@@ -36,3 +37,13 @@ class WebsiteImage(models.Model):
 
     def __str__(self):
         return f"{self.name}"
+
+
+class MenuPost(models.Model):
+    title = models.CharField(max_length=200)
+    content = SummernoteTextField()
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+
+    def __str__(self):
+        return self.title

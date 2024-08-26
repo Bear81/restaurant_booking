@@ -1,6 +1,7 @@
-from django.shortcuts import render
-from .models import WebsiteImage
+from django.shortcuts import render, get_object_or_404
 from website.forms import BookingForm
+from .models import WebsiteImage
+from .models import MenuPost
 
 # Create your views here.
 
@@ -55,3 +56,13 @@ def contact_us(request):
     else:
         form = BookingForm()
     return render(request, 'website/contact_us.html', {'form': form})
+
+
+def menu_list(request):
+    posts = MenuPost.objects.all().order_by('-created_at')
+    return render(request, 'website/menu_list.html', {'posts': posts})
+
+
+def menu_detail(request, pk):
+    post = get_object_or_404(MenuPost, pk=pk)
+    return render(request, 'website/menu_detail.html', {'post': post})
