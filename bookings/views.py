@@ -50,3 +50,7 @@ def cancel_booking(request, pk):
 def booking_list(request):
     bookings = Booking.objects.filter(user=request.user)
     return render(request, 'booking_list.html', {'bookings': bookings})
+
+
+def booking_confirmation(request):
+    return render(request, 'bookings/booking_confirmation.html')

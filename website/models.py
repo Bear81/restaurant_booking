@@ -1,7 +1,7 @@
 from django.db import models
-import cloudinary
-import cloudinary.uploader
-import cloudinary.models
+# import cloudinary
+# import cloudinary.uploader
+# import cloudinary.models
 from django_summernote.fields import SummernoteTextField
 
 # Create your models here.

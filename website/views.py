@@ -78,3 +78,5 @@ def menu_detail(request, pk):
 
 def booking_confirmation(request):
     return render(request, 'website/booking_confirmation.html')
+
+

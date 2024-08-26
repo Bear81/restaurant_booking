@@ -7,7 +7,10 @@
     <h1>Your Bookings</h1>
     <ul>
         {% for booking in bookings %}
-            <li>{{ booking.booking_datetime }} - {{ booking.number_of_guests }} guests - {{ booking.status }}</li>
+            <li>{{ booking.booking_datetime }} - {{ booking.number_of_guests }} guests - {{ booking.status }}
+                <a href="{% url 'booking_edit' booking.id %}">Edit</a> |
+                <a href="{% url 'booking_delete' booking.id %}">Cancel</a>
+            </li>
         {% endfor %}
     </ul>
 </div>
