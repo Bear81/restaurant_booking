@@ -1,18 +1,28 @@
-{% extends 'website/base.html' %}
-
-{% block title %}Booking Confirmation{% endblock %}
-
 {% block content %}
-<section class="booking-confirmation">
-    <h1>Thank You for Your Booking!</h1>
-    <p>Your booking is {{ booking.status }}.</p>
-    <p><strong>Details:</strong></p>
-    <ul>
-        <li>Date and Time: {{ booking.booking_datetime }}</li>
-        <li>Table: {{ booking.table }}</li>
-        <li>Number of Guests: {{ booking.number_of_guests }}</li>
-        <li>Special Requests: {{ booking.special_requests }}</li>
-    </ul>
-    <a href="{% url 'home' %}" class="cta-button">Return to Home</a>
-</section>
+<h2>Your Bookings</h2>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Date and Time</th>
+            <th>Table Number</th>
+            <th>Number of Guests</th>
+            <th>Status</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for booking in bookings %}
+        <tr>
+            <td>{{ booking.booking_datetime }}</td>
+            <td>{{ booking.table.table_number }}</td>
+            <td>{{ booking.number_of_guests }}</td>
+            <td>{{ booking.status }}</td>
+            <td>
+                <a href="{% url 'update_booking' booking.pk %}" class="btn btn-warning btn-sm">Edit</a>
+                <a href="{% url 'cancel_booking' booking.pk %}" class="btn btn-danger btn-sm">Cancel</a>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
 {% endblock %}

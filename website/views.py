@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from .models import WebsiteImage
+from website.forms import BookingForm
 
 # Create your views here.
 
@@ -42,4 +43,15 @@ def about_us(request):
 
 
 def contact_us(request):
-    return render(request, 'website/contact_us.html')
+    if request.method == 'POST':
+        form = BookingForm(request.POST)
+        if form.is_valid():
+            booking = form.save(commit=False)
+            booking.user = request.user
+            booking.save()
+            # Optionally send confirmation email here
+            # Redirect to a booking list or confirmation page
+            return redirect('booking_list')
+    else:
+        form = BookingForm()
+    return render(request, 'website/contact_us.html', {'form': form})

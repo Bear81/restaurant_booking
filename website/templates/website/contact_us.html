@@ -1,0 +1,28 @@
+{% extends 'website/base.html' %}
+
+{% block title %}Contact Us{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+    <h1>Contact Us</h1>
+    <p>If you have any questions or would like to make a booking, please use the form below.</p>
+    
+    <div class="row">
+        <div class="col-md-6">
+            <h2>Get in Touch</h2>
+            <p>Email: info@restaurant.com</p>
+            <p>Phone: +123 456 7890</p>
+            <p>Address: 123 Restaurant Street, Food City</p>
+        </div>
+        
+        <div class="col-md-6">
+            <h2>Make a Booking</h2>
+            <form method="post">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <button type="submit" class="btn btn-primary">Book a Table</button>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}
