@@ -1,8 +1,15 @@
 from django_summernote.admin import SummernoteModelAdmin
 from django.contrib import admin
-from .models import WebsiteImage, MenuPost
+from .models import WebsiteImage, MenuPost, RestaurantInfo
 
 # Register your models here.
+
+
+class RestaurantInfoAdmin(admin.ModelAdmin):
+    list_display = ('name', 'address', 'contact_details', 'opening_hours')
+
+
+admin.site.register(RestaurantInfo, RestaurantInfoAdmin)
 
 
 @admin.register(WebsiteImage)

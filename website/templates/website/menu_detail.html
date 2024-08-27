@@ -4,10 +4,16 @@
 
 {% block content %}
 <div class="container mt-5">
-    <h1 class="text-center mb-4">{{ post.title }}</h1>
-    <div class="content mb-5">
-        {{ post.content|safe }}
+    <div class="row">
+        <div class="col-md-8 offset-md-2">
+            <h1>{{ post.title }}</h1>
+            {% if post.image %}
+            <img src="{{ post.image.image_url }}" class="img-fluid mb-4" alt="{{ post.title }}">
+            {% endif %}
+            <div>
+                {{ post.content|safe }}
+            </div>
+        </div>
     </div>
-    <a href="{% url 'menu_list' %}" class="btn btn-secondary">Back to Menus</a>
 </div>
 {% endblock %}

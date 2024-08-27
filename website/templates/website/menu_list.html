@@ -9,10 +9,13 @@
         {% for post in posts %}
         <div class="col-md-4 mb-4">
             <div class="card h-100">
+                {% if post.image %}
+                <img src="{{ post.image.image_url }}" class="card-img-top" alt="{{ post.title }}">
+                {% endif %}
                 <div class="card-body">
                     <h5 class="card-title">{{ post.title }}</h5>
-                    <p class="card-text">{{ post.content | safe }}</p>
-                    <a href="{% url 'menu_detail' post.pk %}" class="btn btn-primary">Read More</a>
+                    <p class="card-text">{{ post.blurb }}</p>
+                    <a href="{% url 'menu_detail' post.pk %}" class="btn btn-primary">View Menu</a>
                 </div>
             </div>
         </div>
