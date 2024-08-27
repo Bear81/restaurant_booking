@@ -53,6 +53,13 @@ a.nav-link:hover {
     color: #E0E0E0;
 }
 
+/* Menu List Page - Card Image Styling */
+.card-img {
+    height: 100%;
+    object-fit: cover; /* Ensures the image covers the entire area without distortion */
+    object-position: center; /* Centers the image within the card */
+}
+
 /* About Us Page */
 .about-us h1, 
 .about-us h2, 
