@@ -25,7 +25,7 @@
                     <li class="nav-item"><a class="nav-link" href="{% url 'home' %}">Home</a></li>
                     <li class="nav-item"><a class="nav-link" href="{% url 'menu_list' %}">Menus</a></li>
                     <li class="nav-item"><a class="nav-link" href="{% url 'about_us' %}">About Us</a></li>
-                    <li class="nav-item"><a class="nav-link" href="{% url 'contact_us' %}">Contact Us</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{% url 'contact_us' %}">Book Now</a></li>
 
                     {% if user.is_authenticated %}
                         <li class="nav-item"><a class="nav-link" href="{% url 'account_logout' %}">Logout</a></li>

@@ -12,7 +12,7 @@ def create_booking(request):
             booking = form.save(commit=False)
             booking.user = request.user
             booking.save()
-            return redirect('bookings/booking_list.html')
+            return redirect('booking_list')
     else:
         form = BookingForm()
     return render(request, 'bookings/booking_form.html', {'form': form})
