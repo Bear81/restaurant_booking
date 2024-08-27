@@ -3,6 +3,7 @@
 {% block content %}
 <div class="container mt-5">
     <h2 class="text-center mb-4">Your Bookings</h2>
+    {% if bookings %}
     <table class="table table-striped table-hover">
         <thead class="thead-dark">
             <tr>
@@ -17,7 +18,13 @@
             {% for booking in bookings %}
             <tr>
                 <td>{{ booking.booking_datetime }}</td>
-                <td>{{ booking.table.table_number }}</td>
+                <td>
+                    {% if booking.table %}
+                        {{ booking.table.table_number }}
+                    {% else %}
+                        N/A
+                    {% endif %}
+                </td>
                 <td>{{ booking.number_of_guests }}</td>
                 <td>{{ booking.status }}</td>
                 <td>
@@ -28,5 +35,8 @@
             {% endfor %}
         </tbody>
     </table>
+    {% else %}
+    <p class="text-center">You have no bookings at the moment.</p>
+    {% endif %}
 </div>
 {% endblock %}

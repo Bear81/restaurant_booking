@@ -1,38 +1,56 @@
 {% extends 'website/base.html' %}
 
-{% block title %}About Us{% endblock %}
-
 {% block content %}
-<section class="about-us">
-    <h1>About Our Restaurant</h1>
-    
-    <section class="history">
-        <h2>Our History</h2>
-        <p><!-- Insert history here --></p>
-    </section>
-    
-    <section class="team">
-    <h2>Meet the Team</h2>
-    <div class="team-members">
-        {% for member in team_members %}
-            <div class="member">
-                <img src="{{ member.image_url }}" alt="{{ member.name }}">
-                <h3>{{ member.name }}</h3>
-                <p>{{ member.position }}</p>
+<section class="hero text-light text-center d-flex align-items-center justify-content-center" style="background-image: url('{{ hero_image.image_url }}'); background-size: cover; background-position: center; height: 60vh;">
+    <div class="overlay" style="background-color: rgba(0, 0, 0, 0.5); width: 100%; height: 100%; position: absolute; top: 0; left: 0;"></div>
+    <div class="hero-content position-relative">
+        <h1>Welcome to Our Restaurant</h1>
+        <p>Discover our delicious menu and cozy atmosphere.</p>
+        <a href="{% url 'menu_list' %}" class="btn btn-primary mt-3">Explore Our Menus</a>
+    </div>
+</section>
+
+<section class="featured-dishes container my-5">
+    <h2 class="text-center">Featured Dishes</h2>
+    <div class="row">
+        {% for dish in featured_dishes %}
+        <div class="col-md-4 mb-4">
+            <div class="card h-100">
+                <img src="{{ dish.image_url }}" class="card-img-top" alt="{{ dish.name }}">
+                <div class="card-body">
+                    <h3 class="card-title">{{ dish.name }}</h3>
+                    <p class="card-text">{{ dish.description }}</p>
+                </div>
             </div>
+        </div>
         {% endfor %}
     </div>
 </section>
-    
-   <section class="gallery">
-    <h2>Our Gallery</h2>
-    <div class="gallery-grid">
-        {% for image in gallery_images %}
-            <div class="gallery-item">
-                <img src="{{ image.image_url }}" alt="Gallery Image">
+
+<section class="testimonials text-light text-center d-flex align-items-center" style="background-image: url('{{ testimonial_background.image_url }}'); background-size: cover; background-position: center; height: 40vh;">
+    <div class="overlay" style="background-color: rgba(0, 0, 0, 0.7); width: 100%; height: 100%; position: absolute; top: 0; left: 0;"></div>
+    <div class="container position-relative">
+        <h2>What Our Customers Say</h2>
+        <div class="row">
+            <div class="col-md-4">
+                <div class="testimonial">
+                    <p>"The best dining experience I've ever had!"</p>
+                    <p>- Emily</p>
+                </div>
             </div>
-        {% endfor %}
+            <div class="col-md-4">
+                <div class="testimonial">
+                    <p>"Incredible food and top-notch service."</p>
+                    <p>- Sarah</p>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="testimonial">
+                    <p>"A delightful place to enjoy with family."</p>
+                    <p>- Jessica</p>
+                </div>
+            </div>
+        </div>
     </div>
-</section>
 </section>
 {% endblock %}

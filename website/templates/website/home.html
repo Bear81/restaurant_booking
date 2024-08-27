@@ -1,34 +1,56 @@
 {% extends 'website/base.html' %}
 
 {% block content %}
-<section class="hero" style="background-image: url('{{ hero_image.image_url }}');">
-    <h1>Welcome to Our Restaurant</h1>
-    <p>Discover our delicious menu and cozy atmosphere.</p>
-    <a href="{% url 'menu_list' %}" class="cta-button">Explore Our Menus</a>
+<section class="hero text-light text-center d-flex align-items-center justify-content-center" style="background-image: url('{{ hero_image.image_url }}'); background-size: cover; background-position: center; height: 60vh;">
+    <div class="overlay" style="background-color: rgba(0, 0, 0, 0.5); width: 100%; height: 100%; position: absolute; top: 0; left: 0;"></div>
+    <div class="hero-content position-relative">
+        <h1>Welcome to Our Restaurant</h1>
+        <p>Discover our delicious menu and cozy atmosphere.</p>
+        <a href="{% url 'menu_list' %}" class="btn btn-primary mt-3">Explore Our Menus</a>
+    </div>
 </section>
 
-<section class="featured-dishes">
-    <h2>Featured Dishes</h2>
-    <div class="dishes">
+<section class="featured-dishes container my-5">
+    <h2 class="text-center">Featured Dishes</h2>
+    <div class="row">
         {% for dish in featured_dishes %}
-        <div class="dish">
-            <img src="{{ dish.image_url }}" alt="{{ dish.name }}">
-            <h3>{{ dish.name }}</h3>
-            <p>{{ dish.description }}</p>
+        <div class="col-md-4 mb-4">
+            <div class="card h-100">
+                <img src="{{ dish.image_url }}" class="card-img-top" alt="{{ dish.name }}">
+                <div class="card-body">
+                    <h3 class="card-title">{{ dish.name }}</h3>
+                    <p class="card-text">{{ dish.description }}</p>
+                </div>
+            </div>
         </div>
         {% endfor %}
     </div>
 </section>
 
-<section class="testimonials" style="background-image: url('{{ testimonial_background.image_url }}');">
-    <h2>What Our Customers Say</h2>
-    <div class="testimonials-grid">
-        <!-- Example testimonial -->
-        <div class="testimonial">
-            <p>"This is the best restaurant in town!"</p>
-            <p>- Customer Name</p>
+<section class="testimonials text-light text-center d-flex align-items-center" style="background-image: url('{{ testimonial_background.image_url }}'); background-size: cover; background-position: center; height: 40vh;">
+    <div class="overlay" style="background-color: rgba(0, 0, 0, 0.5); width: 100%; height: 100%; position: absolute; top: 0; left: 0;"></div>
+    <div class="container position-relative">
+        <h2>What Our Customers Say</h2>
+        <div class="row">
+            <div class="col-md-4">
+                <div class="testimonial">
+                    <p>"The best dining experience I've ever had!"</p>
+                    <p>- Emily</p>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="testimonial">
+                    <p>"Incredible food and top-notch service."</p>
+                    <p>- Sarah</p>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="testimonial">
+                    <p>"A delightful place to enjoy with family."</p>
+                    <p>- Jessica</p>
+                </div>
+            </div>
         </div>
-        <!-- Repeat for other testimonials -->
     </div>
 </section>
 {% endblock %}

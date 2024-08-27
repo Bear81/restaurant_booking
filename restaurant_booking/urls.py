@@ -19,6 +19,7 @@ from django.contrib import admin
 from django.urls import path, include
 from django.conf import settings
 from website import views
+from bookings import views as booking_views
 
 
 urlpatterns = [
@@ -26,7 +27,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('accounts/', include('allauth.urls')),
     path('bookings/', include('bookings.urls'), name='booking_urls'),
-    path('profile/', views.profile, name='profile'),
+    path('profile/', booking_views.booking_list, name='profile'),
     path('summernote/', include('django_summernote.urls')),
 ]
 

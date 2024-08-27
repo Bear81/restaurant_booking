@@ -4,18 +4,18 @@
 
 {% block content %}
 <div class="container mt-5">
-    <h1>Contact Us</h1>
-    <p>If you have any questions or would like to make a booking, please use the form below.</p>
+    <h1 class="text-center mb-4">Contact Us</h1>
+    <p class="text-center mb-5">If you have any questions or would like to make a booking, please use the form below.</p>
     
     <div class="row">
-        <div class="col-md-6">
+        <div class="col-md-6 mb-4">
             <h2>Get in Touch</h2>
-            <p>Email: info@restaurant.com</p>
-            <p>Phone: +123 456 7890</p>
-            <p>Address: 123 Restaurant Street, Food City</p>
+            <p><strong>Email:</strong> info@restaurant.com</p>
+            <p><strong>Phone:</strong> +123 456 7890</p>
+            <p><strong>Address:</strong> 123 Restaurant Street, Food City</p>
         </div>
         
-        <div class="col-md-6">
+        <div class="col-md-6 mb-4">
             <h2>Make a Booking</h2>
 
             {% if success_message %}
@@ -24,10 +24,10 @@
                 </div>
             {% endif %}
 
-            <form method="post">
+            <form method="post" action="{% url 'create_booking' %}">
                 {% csrf_token %}
                 {{ form.as_p }}
-                <button type="submit" class="btn btn-primary">Book a Table</button>
+                <button type="submit" class="btn btn-primary mt-3">Book a Table</button>
             </form>
         </div>
     </div>

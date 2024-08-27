@@ -41,7 +41,9 @@ class WebsiteImage(models.Model):
 
 class MenuPost(models.Model):
     title = models.CharField(max_length=200)
+    blurb = models.TextField(max_length=500, blank=True)
     content = SummernoteTextField()
+    image = models.ImageField(upload_to='menu_images/', blank=True, null=True)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 

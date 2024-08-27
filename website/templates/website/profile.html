@@ -3,15 +3,24 @@
 {% block title %}Your Profile{% endblock %}
 
 {% block content %}
-<div class="container">
-    <h1>Your Bookings</h1>
-    <ul>
-        {% for booking in bookings %}
-            <li>{{ booking.booking_datetime }} - {{ booking.number_of_guests }} guests - {{ booking.status }}
-                <a href="{% url 'update_booking' booking.id %}">Edit</a> |
-                <a href="{% url 'cancel_booking' booking.id %}">Cancel</a>
-            </li>
-        {% endfor %}
-    </ul>
+<div class="container mt-5">
+    <h1 class="text-center mb-4">Your Bookings</h1>
+    {% if bookings %}
+        <ul class="list-group">
+            {% for booking in bookings %}
+                <li class="list-group-item d-flex justify-content-between align-items-center">
+                    <div>
+                        <strong>{{ booking.booking_datetime }}</strong> - {{ booking.number_of_guests }} guests - {{ booking.status }}
+                    </div>
+                    <div>
+                        <a href="{% url 'update_booking' booking.id %}" class="btn btn-sm btn-outline-primary">Edit</a>
+                        <a href="{% url 'cancel_booking' booking.id %}" class="btn btn-sm btn-outline-danger">Cancel</a>
+                    </div>
+                </li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p class="text-center">You have no bookings at the moment.</p>
+    {% endif %}
 </div>
 {% endblock %}

@@ -14,6 +14,7 @@ from pathlib import Path
 import os
 if os.path.isfile('env.py'):
     import env
+from django.contrib import admin
 
 import cloudinary
 import cloudinary.uploader
@@ -181,5 +182,3 @@ DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
-
-
