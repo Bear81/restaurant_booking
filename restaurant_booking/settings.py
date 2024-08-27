@@ -15,6 +15,7 @@ import os
 if os.path.isfile('env.py'):
     import env
 from django.contrib import admin
+import sys
 
 import cloudinary
 import cloudinary.uploader
@@ -133,6 +134,14 @@ print("DATABASE_URL:", os.environ.get("DATABASE_URL"))
 DATABASES = {
     'default': dj_database_url.parse(os.environ.get("DATABASE_URL"))
 }
+
+if 'test' in sys.argv:
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.sqlite3',
+            'NAME': ':memory:',
+        }
+    }
 
 
 # Password validation
