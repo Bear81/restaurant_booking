@@ -19,3 +19,4 @@ sqlparse==0.5.1
 typing_extensions==4.12.2
 urllib3==1.26.19
 webencodings==0.5.1
+whitenoise==6.5.0
