@@ -20,7 +20,6 @@ import cloudinary
 import cloudinary.uploader
 import cloudinary.api
 import dj_database_url
-from pathlib import Path
 
 # Helper to read booleans from env vars.
 def env_bool(name: str, default: str = "0") -> bool:
@@ -32,6 +31,7 @@ def env_bool(name: str, default: str = "0") -> bool:
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
+default_sqlite_url = f"sqlite:///{BASE_DIR / 'db.sqlite3'}"
 TEMPLATES_DIR = Path(BASE_DIR, 'templates')
 
 
@@ -129,28 +129,25 @@ TEMPLATES = [
 WSGI_APPLICATION = 'restaurant_booking.wsgi.application'
 
 
+CSRF_TRUSTED_ORIGINS = [
+    "https://*.herokuapp.com",
+    *[f"https://{h}" for h in ALLOWED_HOSTS if h.endswith("herokuapp.com")],
+]
+
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
 
-# Database
-default_sqlite_url = f"sqlite:///{BASE_DIR / 'db.sqlite3'}"
+DATABASE_URL = os.environ.get("DATABASE_URL")
+
+# Use SQLite if DATABASE_URL is missing (local dev). If present (prod), require SSL.
 DATABASES = {
     "default": dj_database_url.parse(
-        os.environ.get("DATABASE_URL", default_sqlite_url),
+        DATABASE_URL or default_sqlite_url,
         conn_max_age=600,
-        ssl_require=False,  # local dev: no SSL
+        ssl_require=bool(DATABASE_URL),  # <-- SSL ON whenever using a remote DB
     )
 }
-
-# Use in-memory SQLite for tests
-if 'test' in sys.argv:
-    DATABASES = {
-        'default': {
-            'ENGINE': 'django.db.backends.sqlite3',
-            'NAME': ':memory:',
-        }
-    }
 
 
 # Password validation
