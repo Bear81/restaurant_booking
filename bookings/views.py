@@ -11,10 +11,13 @@ def create_booking(request):
         if form.is_valid():
             booking = form.save(commit=False)
             booking.user = request.user
+            booking.status = 'pending'
+            booking.table = None  # Let admin assign table later
             booking.save()
-            return redirect('booking_list')
+            return redirect('profile')
     else:
         form = BookingForm()
+
     return render(request, 'bookings/booking_form.html', {'form': form})
 
 

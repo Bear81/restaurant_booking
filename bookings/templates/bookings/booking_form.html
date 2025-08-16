@@ -1,12 +1,33 @@
-{% extends 'base.html' %}
-
-{% block content %}
+{% extends 'base.html' %} {% block content %}
 <div class="container mt-5">
-    <h2 class="text-center mb-4">{% if form.instance.pk %}Update{% else %}Create{% endif %} Booking</h2>
-    <form method="post" class="w-50 mx-auto">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <button type="submit" class="btn btn-primary btn-block mt-3">Save</button>
-    </form>
+  <h2 class="text-center mb-4">
+    {% if form.instance.pk %}Update{% else %}Create{% endif %} Booking
+  </h2>
+  <form method="post" class="mx-auto" style="max-width: 600px">
+    {% csrf_token %}
+
+    <div class="mb-3">
+      <label for="booking_datetime" class="form-label"
+        >Booking Date & Time</label
+      >
+      {{ form.booking_datetime }} {% if form.booking_datetime.errors %}
+      <div class="text-danger small">{{ form.booking_datetime.errors.0 }}</div>
+      {% endif %}
+    </div>
+
+    <div class="mb-3">
+      <label for="number_of_guests" class="form-label">Number of Guests</label>
+      {{ form.number_of_guests }} {% if form.number_of_guests.errors %}
+      <div class="text-danger small">{{ form.number_of_guests.errors.0 }}</div>
+      {% endif %}
+    </div>
+
+    <div class="mb-3">
+      <label for="special_requests" class="form-label">Special Requests</label>
+      {{ form.special_requests }}
+    </div>
+
+    <button type="submit" class="btn btn-success w-100">Save Booking</button>
+  </form>
 </div>
 {% endblock %}

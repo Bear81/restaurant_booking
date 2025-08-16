@@ -1,7 +1,7 @@
 from django import forms
 from bookings.models import Booking
 from django.utils import timezone
-
+from datetime import time, datetime, timedelta
 
 class BookingForm(forms.ModelForm):
     booking_datetime = forms.SplitDateTimeField(
@@ -13,11 +13,11 @@ class BookingForm(forms.ModelForm):
 
     class Meta:
         model = Booking
-        fields = '__all__'
-        
+        # Exclude fields users shouldn't control
+        fields = ['booking_datetime', 'number_of_guests', 'special_requests']
+
     def clean_booking_datetime(self):
         booking_datetime = self.cleaned_data.get('booking_datetime')
-        if booking_datetime < timezone.now():
-            raise forms.ValidationError(
-                "The booking date and time cannot be in the past.")
+        if booking_datetime and booking_datetime < timezone.now():
+            raise forms.ValidationError("The booking date and time cannot be in the past.")
         return booking_datetime
