@@ -1,23 +1,55 @@
 from django import forms
 from bookings.models import Booking
 from django.utils import timezone
-from datetime import time, datetime, timedelta
+from datetime import datetime, timedelta, time
+
+def generate_time_choices(start=time(12, 0), end=time(22, 0), interval=30):
+    current = datetime.combine(datetime.today(), start)
+    end_dt = datetime.combine(datetime.today(), end)
+    choices = []
+    while current <= end_dt:
+        t = current.time()
+        choices.append((t.strftime("%H:%M"), t.strftime("%H:%M")))
+        current += timedelta(minutes=interval)
+    return choices
 
 class BookingForm(forms.ModelForm):
-    booking_datetime = forms.SplitDateTimeField(
-        widget=forms.SplitDateTimeWidget(
-            date_attrs={'type': 'date', 'class': 'form-control'},
-            time_attrs={'type': 'time', 'class': 'form-control'}
-        )
+    booking_date = forms.DateField(
+        widget=forms.DateInput(attrs={'type': 'date', 'class': 'form-control'})
+    )
+    booking_time = forms.ChoiceField(
+        choices=generate_time_choices(),
+        widget=forms.Select(attrs={'class': 'form-control'})
     )
 
     class Meta:
         model = Booking
-        # Exclude fields users shouldn't control
-        fields = ['booking_datetime', 'number_of_guests', 'special_requests']
+        fields = ['number_of_guests', 'special_requests']
 
-    def clean_booking_datetime(self):
-        booking_datetime = self.cleaned_data.get('booking_datetime')
-        if booking_datetime and booking_datetime < timezone.now():
-            raise forms.ValidationError("The booking date and time cannot be in the past.")
-        return booking_datetime
+    def __init__(self, *args, **kwargs):
+        instance = kwargs.get('instance')
+        initial = kwargs.get('initial', {})
+
+        if instance and instance.booking_datetime:
+            initial['booking_date'] = instance.booking_datetime.date()
+            initial['booking_time'] = instance.booking_datetime.time().strftime('%H:%M')
+            kwargs['initial'] = initial
+
+        super().__init__(*args, **kwargs)
+
+    def clean(self):
+        cleaned_data = super().clean()
+        booking_date = cleaned_data.get('booking_date')
+        booking_time = cleaned_data.get('booking_time')
+
+        if booking_date and booking_time:
+            try:
+                booking_datetime = datetime.strptime(
+                    f"{booking_date} {booking_time}", "%Y-%m-%d %H:%M"
+                )
+                if booking_datetime < timezone.now():
+                    self.add_error('booking_date', "Booking must be in the future.")
+                cleaned_data['booking_datetime'] = booking_datetime
+            except ValueError:
+                self.add_error('booking_time', "Invalid time format.")
+        return cleaned_data

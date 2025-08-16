@@ -1,31 +1,53 @@
-{% extends 'base.html' %} {% block content %}
+<!-- prettier-ignore-file -->
+{% extends 'base.html' %}
+
+{% block content %}
 <div class="container mt-5">
   <h2 class="text-center mb-4">
-    {% if form.instance.pk %}Update{% else %}Create{% endif %} Booking
+    <!-- prettier-ignore-start -->
+    {% if booking %}Update{% else %}Create{% endif %} Booking
+    <!-- prettier-ignore-end -->
   </h2>
+
   <form method="post" class="mx-auto" style="max-width: 600px">
     {% csrf_token %}
 
+    <!-- prettier-ignore-start -->
     <div class="mb-3">
-      <label for="booking_datetime" class="form-label"
-        >Booking Date & Time</label
-      >
-      {{ form.booking_datetime }} {% if form.booking_datetime.errors %}
-      <div class="text-danger small">{{ form.booking_datetime.errors.0 }}</div>
-      {% endif %}
+      <label for="booking_date" class="form-label">Booking Date</label>
+      {{ form.booking_date }}
+      {% with errors=form.booking_date.errors %}
+        {% if errors %}
+          <div class="text-danger small">{{ errors.0 }}</div>
+        {% endif %}
+      {% endwith %}
     </div>
 
     <div class="mb-3">
-      <label for="number_of_guests" class="form-label">Number of Guests</label>
-      {{ form.number_of_guests }} {% if form.number_of_guests.errors %}
-      <div class="text-danger small">{{ form.number_of_guests.errors.0 }}</div>
-      {% endif %}
+      <label for="booking_time" class="form-label">Booking Time</label>
+      {{ form.booking_time }}
+      {% with errors=form.booking_time.errors %}
+        {% if errors %}
+          <div class="text-danger small">{{ errors.0 }}</div>
+        {% endif %}
+      {% endwith %}
     </div>
 
     <div class="mb-3">
-      <label for="special_requests" class="form-label">Special Requests</label>
+      {{ form.number_of_guests.label_tag }}
+      {{ form.number_of_guests }}
+      {% with errors=form.number_of_guests.errors %}
+        {% if errors %}
+          <div class="text-danger small">{{ errors.0 }}</div>
+        {% endif %}
+      {% endwith %}
+    </div>
+
+    <div class="mb-3">
+      {{ form.special_requests.label_tag }}
       {{ form.special_requests }}
     </div>
+    <!-- prettier-ignore-end -->
 
     <button type="submit" class="btn btn-success w-100">Save Booking</button>
   </form>
