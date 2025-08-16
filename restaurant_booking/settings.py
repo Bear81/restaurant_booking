@@ -13,14 +13,18 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 from pathlib import Path
 import os
 if os.path.isfile('env.py'):
-    import env
-from django.contrib import admin
+    import env  # allows local env vars without touching Heroku
 import sys
 
 import cloudinary
 import cloudinary.uploader
 import cloudinary.api
 import dj_database_url
+from pathlib import Path
+
+# Helper to read booleans from env vars.
+def env_bool(name: str, default: str = "0") -> bool:
+    return os.environ.get(name, default).strip().lower() in {"1", "true", "yes", "on"}
 
 
 
@@ -34,17 +38,12 @@ TEMPLATES_DIR = Path(BASE_DIR, 'templates')
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
 
-# SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = os.environ.get("SECRET_KEY")
+# Security
+SECRET_KEY = os.environ.get("SECRET_KEY", "dev-insecure-key")  # OK for local only
+DEBUG = env_bool("DEBUG", "1")  # default ON locally; set to 0 in Heroku Config Vars
 
 
-# SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
-
-ALLOWED_HOSTS = [
-    '127.0.0.1',
-    'localhost',
-    '.herokuapp.com',]
+ALLOWED_HOSTS = [h.strip() for h in os.environ.get("ALLOWED_HOSTS", "127.0.0.1,localhost,.herokuapp.com").split(",") if h.strip()]
 
 
 # Application definition
@@ -133,13 +132,18 @@ WSGI_APPLICATION = 'restaurant_booking.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
-print("DATABASE_URL:", os.environ.get("DATABASE_URL"))
 
-
+# Database
+default_sqlite_url = f"sqlite:///{BASE_DIR / 'db.sqlite3'}"
 DATABASES = {
-    'default': dj_database_url.parse(os.environ.get("DATABASE_URL"))
+    "default": dj_database_url.parse(
+        os.environ.get("DATABASE_URL", default_sqlite_url),
+        conn_max_age=600,
+        ssl_require=False,  # local dev: no SSL
+    )
 }
 
+# Use in-memory SQLite for tests
 if 'test' in sys.argv:
     DATABASES = {
         'default': {
@@ -183,22 +187,28 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
 
-STATIC_URL = 'static/'
-STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static'),]
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+# Static files
+STATIC_URL = "/static/"
+STATICFILES_DIRS = [BASE_DIR / "static"]
+STATIC_ROOT = BASE_DIR / "staticfiles"
 
-# Cloudinary settings for media files
+# Media defaults to local disk
+MEDIA_URL = "/media/"
+MEDIA_ROOT = BASE_DIR / "media"
 
-CLOUDINARY_STORAGE = {
-    'CLOUD_NAME': os.environ.get('CLOUDINARY_CLOUD_NAME'),
-    'API_KEY': os.environ.get('CLOUDINARY_API_KEY'),
-    'API_SECRET': os.environ.get('CLOUDINARY_API_SECRET'),
-}
+# Enable Cloudinary storage only if keys are present OR explicitly requested
+_cloud_name = os.environ.get("CLOUDINARY_CLOUD_NAME")
+_api_key = os.environ.get("CLOUDINARY_API_KEY")
+_api_secret = os.environ.get("CLOUDINARY_API_SECRET")
+USE_CLOUDINARY = env_bool("USE_CLOUDINARY", "0") or all([_cloud_name, _api_key, _api_secret])
 
-MEDIA_URL = '/media/'
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
-
-DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
+if USE_CLOUDINARY:
+    CLOUDINARY_STORAGE = {
+        "CLOUD_NAME": _cloud_name,
+        "API_KEY": _api_key,
+        "API_SECRET": _api_secret,
+    }
+    DEFAULT_FILE_STORAGE = "cloudinary_storage.storage.MediaCloudinaryStorage"
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
