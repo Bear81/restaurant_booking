@@ -13,7 +13,7 @@ class BookingForm(forms.ModelForm):
 
     class Meta:
         model = Booking
-        fields = ['booking_datetime', 'number_of_guests', 'special_requests']
+        fields = '__all__'
         
     def clean_booking_datetime(self):
         booking_datetime = self.cleaned_data.get('booking_datetime')
