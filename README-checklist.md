@@ -30,8 +30,8 @@ This document helps you track all remaining tasks required for a complete, pass-
 ## ✅ GitHub Project Board
 
 - [x] Created and linked in README
-- [ ] All user stories added and assigned
-- [ ] Each story marked complete when feature is done
+- [x] All user stories added and assigned
+- [x] Each story marked complete when feature is done
 
 ---
 

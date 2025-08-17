@@ -2,13 +2,13 @@
 
 {% block content %}
 <div class="container mt-5">
-  <h2 class="text-center text-md-left mb-4">Your Bookings</h2>
+  <h2 class="text-center text-md-left mb-4">
+    Welcome, {{ user.first_name|default:user.username }} — Your Bookings
+  </h2>
 
   <div class="text-center mb-3">
-    <a href="{% url 'create_booking' %}" class="btn btn-success">
-        Book Now
-    </a>
-</div>
+    <a href="{% url 'create_booking' %}" class="btn btn-success">Book Now</a>
+  </div>
 
   {% if bookings %}
     <div class="table-responsive">
@@ -26,13 +26,7 @@
           {% for booking in bookings %}
             <tr>
               <td>{{ booking.booking_datetime }}</td>
-              <td>
-                {% if booking.table %}
-                  {{ booking.table.table_number }}
-                {% else %}
-                  N/A
-                {% endif %}
-              </td>
+              <td>{% if booking.table %}{{ booking.table.table_number }}{% else %}N/A{% endif %}</td>
               <td>{{ booking.number_of_guests }}</td>
               <td>{{ booking.status }}</td>
               <td>
