@@ -168,6 +168,12 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+# Redirects
+LOGIN_REDIRECT_URL = 'booking_list'        
+ACCOUNT_LOGOUT_REDIRECT_URL = 'home'      # after sign out
+
+# (Optional) Ensure Allauth respects our redirect:
+ACCOUNT_AUTHENTICATED_LOGIN_REDIRECTS = True
 
 # Internationalization
 # https://docs.djangoproject.com/en/4.2/topics/i18n/
