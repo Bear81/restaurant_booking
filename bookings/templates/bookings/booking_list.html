@@ -4,6 +4,12 @@
 <div class="container mt-5">
   <h2 class="text-center text-md-left mb-4">Your Bookings</h2>
 
+  <div class="text-center mb-3">
+    <a href="{% url 'create_booking' %}" class="btn btn-success">
+        Book Now
+    </a>
+</div>
+
   {% if bookings %}
     <div class="table-responsive">
       <table class="table table-striped table-hover">
