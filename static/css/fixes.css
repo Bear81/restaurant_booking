@@ -124,3 +124,33 @@ section,
 .account label {
   color: #ffffff !important;
 }
+
+/* ---- Sticky footer layout (keeps footer at bottom on short pages) ---- */
+html,
+body {
+  height: 100%;
+}
+body {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+main {
+  flex: 1 0 auto;
+} /* content expands */
+.footer {
+  flex-shrink: 0;
+} /* footer stays at bottom */
+
+/* Small, theme-friendly accent button for CTAs */
+.btn-accent {
+  background-color: #e09f3e;
+  border-color: #e09f3e;
+  color: #212529;
+}
+.btn-accent:hover,
+.btn-accent:focus {
+  background-color: #cf8d36;
+  border-color: #cf8d36;
+  color: #212529;
+}
