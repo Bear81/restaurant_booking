@@ -44,12 +44,25 @@ class BookingForm(forms.ModelForm):
 
         if booking_date and booking_time:
             try:
+                # Build a naive datetime from the split fields
                 booking_datetime = datetime.strptime(
                     f"{booking_date} {booking_time}", "%Y-%m-%d %H:%M"
                 )
+
+                # Make it timezone-aware in the current timezone (respects USE_TZ)
+                if timezone.is_naive(booking_datetime):
+                    booking_datetime = timezone.make_aware(
+                        booking_datetime, timezone.get_current_timezone()
+                    )
+
+                # Compare aware vs aware
                 if booking_datetime < timezone.now():
                     self.add_error('booking_date', "Booking must be in the future.")
+
+                # Store the normalized, aware datetime for saving/usage
                 cleaned_data['booking_datetime'] = booking_datetime
+
             except ValueError:
                 self.add_error('booking_time', "Invalid time format.")
+
         return cleaned_data
