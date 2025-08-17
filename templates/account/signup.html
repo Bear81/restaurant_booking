@@ -7,29 +7,21 @@
 <div class="container">
   <div class="row">
     <div class="col-md-8 mt-3 offset-md-2">
+      <h1 class="mb-3">{% trans "Sign Up" %}</h1>
 
-      {% element h1 %}
-        {% trans "Sign Up" %}
-      {% endelement %}
-
-      {% setvar link %}<a href="{{ login_url }}">{% endsetvar %}
-      {% setvar end_link %}</a>{% endsetvar %}
-      {% element p %}
-        {% blocktranslate %}Already have an account? Then please {{ link }}sign in{{ end_link }}.{% endblocktranslate %}
-      {% endelement %}
+      <p>
+        {% blocktranslate %}Already have an account? Then please <a href="{{ login_url }}">sign in</a>.{% endblocktranslate %}
+      </p>
 
       {% if not SOCIALACCOUNT_ONLY %}
         {% url 'account_signup' as action_url %}
-        {# Add a class so we can target inputs if they don’t carry .form-control #}
         {% element form form=form method="post" action=action_url class="signup" tags="entrance,signup" %}
           {% slot body %}
             {% csrf_token %}
-            {# Keep unlabeled, but you can still style via CSS #}
             {% element fields form=form unlabeled=True %}{% endelement %}
             {{ redirect_field }}
           {% endslot %}
           {% slot actions %}
-            {# Add Bootstrap classes to the submit button #}
             {% element button type="submit" class="btn btn-primary btn-block" tags="prominent,signup" %}
               {% trans "Sign Up" %}
             {% endelement %}
@@ -40,7 +32,6 @@
       {% if SOCIALACCOUNT_ENABLED %}
         {% include "socialaccount/snippets/login.html" with page_layout="entrance" %}
       {% endif %}
-
     </div>
   </div>
 </div>
