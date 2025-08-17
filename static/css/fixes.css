@@ -1,0 +1,87 @@
+/* ==== Mobile overflow & title alignment fixes (scoped and safe) ==== */
+
+/* Prevent any horizontal scrolling caused by wide children or negative margins */
+html,
+body {
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
+/* Make images and blocks respect the viewport width */
+img,
+.img-fluid,
+.card-img,
+.hero,
+.carousel,
+.container,
+.container-fluid,
+.section {
+  max-width: 100%;
+}
+
+/* Your card images currently use `height: 100%` which can force overflow on small screens */
+@media (max-width: 576px) {
+  .card-img {
+    height: auto; /* allow natural height */
+    width: 100%; /* fill the card width */
+    object-fit: cover; /* keep it neat if height is constrained elsewhere */
+  }
+}
+
+/* Bootstrap rows can overflow if used outside a container; this keeps them inside */
+.row {
+  --bs-gutter-x: 1.5rem; /* keep default gutters, but avoid weird negatives */
+}
+
+/* Center page titles and breadcrumbs on small screens */
+@media (max-width: 768px) {
+  .page-title h1,
+  .section-title,
+  .section-title h2 {
+    text-align: center;
+  }
+
+  .page-title .breadcrumbs ol {
+    justify-content: center;
+  }
+}
+
+/* Table responsiveness: allow horizontal scroll for wide tables on phones */
+@media (max-width: 576px) {
+  .table {
+    display: block;
+    width: 100%;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+}
+
+/* Buttons/links that might be too wide: ensure they wrap instead of pushing layout */
+.btn,
+.nav-link,
+a {
+  word-wrap: break-word;
+  overflow-wrap: anywhere;
+}
+
+/* Avoid sections clipping children shadows or positioned elements (main.css had `overflow: clip`) */
+section,
+.section {
+  overflow-x: hidden; /* stop horizontal overflow without hiding vertical */
+}
+
+/* If any elements use large fixed paddings/margins that cause overflow on small screens, tame them */
+@media (max-width: 576px) {
+  .px-5,
+  .ps-5,
+  .pe-5 {
+    padding-left: 1rem !important;
+    padding-right: 1rem !important;
+  }
+  .mx-5,
+  .ms-5,
+  .me-5 {
+    margin-left: 1rem !important;
+    margin-right: 1rem !important;
+  }
+}
