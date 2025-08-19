@@ -6,9 +6,10 @@
     Welcome, {{ user.first_name|default:user.username }} — Your Bookings
   </h2>
 
-  <div class="text-center mb-3">
+<div class="text-center mb-3">
     <a href="{% url 'create_booking' %}" class="btn btn-accent">Book Now</a>
   </div>
+
 
   {% if bookings %}
     <div class="table-responsive">
