@@ -41,7 +41,7 @@ def update_booking(request, pk):
         else:
             messages.error(request, "Please correct the errors below.")
     else:
-        form = BookingForm(instance=booking)  # ✅ key fix here
+        form = BookingForm(instance=booking)
 
     return render(request, 'bookings/booking_form.html', {'form': form, 'booking': booking})
 
