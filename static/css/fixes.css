@@ -1,13 +1,13 @@
-/* ==== Mobile overflow & title alignment fixes (scoped and safe) ==== */
+/* ==== Mobile overflow & alignment fixes ==== */
 
-/* Prevent any horizontal scrolling caused by wide children or negative margins */
+/* Stop any accidental sideways scrolling */
 html,
 body {
   max-width: 100%;
   overflow-x: hidden;
 }
 
-/* Make images and blocks respect the viewport width */
+/* Keep images and blocks inside viewport */
 img,
 .img-fluid,
 .card-img,
@@ -19,34 +19,33 @@ img,
   max-width: 100%;
 }
 
-/* Your card images currently use `height: 100%` which can force overflow on small screens */
+/* Card images: avoid stretching/overflow on phones */
 @media (max-width: 576px) {
   .card-img {
-    height: auto; /* allow natural height */
-    width: 100%; /* fill the card width */
-    object-fit: cover; /* keep it neat if height is constrained elsewhere */
+    height: auto;
+    width: 100%;
+    object-fit: cover;
   }
 }
 
-/* Bootstrap rows can overflow if used outside a container; this keeps them inside */
+/* Bootstrap rows sometimes overflow without a container */
 .row {
-  --bs-gutter-x: 1.5rem; /* keep default gutters, but avoid weird negatives */
+  --bs-gutter-x: 1.5rem;
 }
 
-/* Center page titles and breadcrumbs on small screens */
+/* Center titles/breadcrumbs on smaller screens */
 @media (max-width: 768px) {
   .page-title h1,
   .section-title,
   .section-title h2 {
     text-align: center;
   }
-
   .page-title .breadcrumbs ol {
     justify-content: center;
   }
 }
 
-/* Table responsiveness: allow horizontal scroll for wide tables on phones */
+/* Tables: allow scrolling on phones */
 @media (max-width: 576px) {
   .table {
     display: block;
@@ -56,7 +55,7 @@ img,
   }
 }
 
-/* Buttons/links that might be too wide: ensure they wrap instead of pushing layout */
+/* Wrap long text in buttons/links instead of breaking layout */
 .btn,
 .nav-link,
 a {
@@ -64,13 +63,13 @@ a {
   overflow-wrap: anywhere;
 }
 
-/* Avoid sections clipping children shadows or positioned elements (main.css had `overflow: clip`) */
+/* Prevent clipped shadows/child elements */
 section,
 .section {
-  overflow-x: hidden; /* stop horizontal overflow without hiding vertical */
+  overflow-x: hidden;
 }
 
-/* If any elements use large fixed paddings/margins that cause overflow on small screens, tame them */
+/* Tame large padding/margins on mobile */
 @media (max-width: 576px) {
   .px-5,
   .ps-5,
@@ -86,7 +85,7 @@ section,
   }
 }
 
-/* === Auth pages: improve contrast & visibility === */
+/* ==== Buttons & forms ==== */
 .btn-primary {
   background-color: #0d6efd !important;
   border-color: #0d6efd !important;
@@ -118,14 +117,14 @@ section,
   color: #bdbdbd !important;
 }
 
-/* Headings on auth pages */
+/* Auth page headings */
 .account h1,
 .account h2,
 .account label {
   color: #ffffff !important;
 }
 
-/* ---- Sticky footer layout (keeps footer at bottom on short pages) ---- */
+/* ==== Layout: sticky footer ==== */
 html,
 body {
   height: 100%;
@@ -137,12 +136,12 @@ body {
 }
 main {
   flex: 1 0 auto;
-} /* content expands */
+}
 .footer {
   flex-shrink: 0;
-} /* footer stays at bottom */
+}
 
-/* Small, theme-friendly accent button for CTAs */
+/* Accent button (used for key CTAs) */
 .btn-accent {
   background-color: #e09f3e;
   border-color: #e09f3e;
@@ -155,7 +154,7 @@ main {
   color: #212529;
 }
 
-/* --- Auth page minimal polish --- */
+/* ==== Auth page tweaks ==== */
 .account .btn-primary {
   background-color: #e09f3e;
   border-color: #e09f3e;
@@ -184,4 +183,51 @@ main {
 }
 .account a:hover {
   color: #f7a84c;
+}
+
+/* Auth form cleanup */
+.account form ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.account form li {
+  margin-bottom: 0.85rem;
+}
+.account form label {
+  display: block;
+  margin-bottom: 0.35rem;
+  color: #f0f0f0;
+}
+.account form input,
+.account form select,
+.account form textarea {
+  width: 100%;
+  display: block;
+  background-color: #1f1f1f;
+  color: #f0f0f0;
+  border: 1px solid #444;
+  border-radius: 0.25rem;
+  padding: 0.5rem 0.75rem;
+}
+.account .helptext {
+  font-size: 0.875rem;
+  color: #bdbdbd;
+}
+.account .errorlist {
+  list-style: none;
+  color: #dc3545;
+  margin: 0 0 0.5rem 0;
+  padding: 0;
+}
+
+/* Tighter table on small screens */
+@media (max-width: 576px) {
+  .table th,
+  .table td {
+    white-space: nowrap;
+  }
+  .table-responsive {
+    overflow-x: auto;
+  }
 }
