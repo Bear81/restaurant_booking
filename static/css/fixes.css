@@ -154,3 +154,34 @@ main {
   border-color: #cf8d36;
   color: #212529;
 }
+
+/* --- Auth page minimal polish --- */
+.account .btn-primary {
+  background-color: #e09f3e;
+  border-color: #e09f3e;
+  color: #212529;
+}
+.account .btn-primary:hover,
+.account .btn-primary:focus {
+  background-color: #cf8d36;
+  border-color: #cf8d36;
+  color: #212529;
+}
+
+.account .form-control,
+.account input[type='text'],
+.account input[type='email'],
+.account input[type='password'] {
+  background-color: #1f1f1f;
+  color: #f0f0f0;
+  border: 1px solid #444;
+}
+.account label {
+  color: #f0f0f0;
+}
+.account a {
+  color: #e09f3e;
+}
+.account a:hover {
+  color: #f7a84c;
+}
