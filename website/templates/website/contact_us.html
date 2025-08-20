@@ -27,7 +27,7 @@
             <form method="post" action="{% url 'create_booking' %}">
                 {% csrf_token %}
                 {{ form.as_p }}
-                <button type="submit" class="btn btn-primary mt-3">Book a Table</button>
+                <button type="submit" class="btn btn-accent mt-3">Book a Table</button>
             </form>
         </div>
     </div>

@@ -13,7 +13,7 @@
                         <strong>{{ booking.booking_datetime }}</strong> - {{ booking.number_of_guests }} guests - {{ booking.status }}
                     </div>
                     <div>
-                        <a href="{% url 'update_booking' booking.id %}" class="btn btn-sm btn-outline-primary">Edit</a>
+                        <a href="{% url 'update_booking' booking.id %}" class="btn btn-sm btn-outline-accent">Edit</a>
                         <a href="{% url 'cancel_booking' booking.id %}" class="btn btn-sm btn-outline-danger">Cancel</a>
                     </div>
                 </li>
