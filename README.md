@@ -88,14 +88,14 @@ Navigation is consistent across all pages:
 - **Profile welcome message** with logged-in user’s name.
 - **Sticky footer** on all pages.
 
-![signup](documentation\readme_images\signup_page.png)
-![Login](documentation\readme_images\login_page.png)
-![logout](documentation\readme_images\logout_confirmation.png)
-![Create Booknig](documentation\readme_images\booking_form.png)
-![Update Booking](documentation\readme_images\update_booking.png)
-![View Booking](documentation\readme_images\profile_your_bookings.png)
-![Menu](documentation\readme_images\menu_list_page.png)
-![Menu Detail](documentation\readme_images\menu_detail.png)
+![signup](documentation/readme_images/signup_page.png)
+![Login](documentation/readme_images/login_page.png)
+![logout](documentation/readme_images/logout_confirmation.png)
+![Create Booknig](documentation/readme_images/booking_form.png)
+![Update Booking](documentation/readme_images/update_booking.png)
+![View Booking](documentation/readme_images/profile_your_bookings.png)
+![Menu](documentation/readme_images/menu_list_page.png)
+![Menu Detail](documentation/readme_images/menu_detail.png)
 
 ### Future Features
 
@@ -121,7 +121,7 @@ Relationships:
 - One User → Many Bookings.
 - Bookings may be linked to Tables.
 
-![ERD](documentation\readme_images\db_diagram.png)
+![ERD](documentation/readme_images/db_diagram.png)
 
 ---
 
@@ -133,8 +133,8 @@ The project was managed using Agile principles:
 - Tasks moved across _To Do → In Progress → Review → Done_.
 - Iterative development with frequent testing.
 
-![Github Project Board](documentation\readme_images\github_project.png)
-![Github Project Card](documentation\readme_images\github_project_card.png)
+![Github Project Board](documentation/readme_images/github_project.png)
+![Github Project Card](documentation/readme_images/github_project_card.png)
 
 [Github Project Board](https://github.com/users/Bear81/projects/7/views/1)
 
@@ -215,13 +215,13 @@ It follows the structure required by the Code Institute assessment criteria.
 ## Validator Testing
 
 - **HTML**: W3C Validator →
-  ![W3C Validator](documentation\readme_images\W3CValidator.png)
+  ![W3C Validator](documentation/readme_images/W3CValidator.png)
 
 - **CSS**: Jigsaw Validator →
-  ![Jigsaw Validator](documentation\readme_images\JigsawValidator.png)
+  ![Jigsaw Validator](documentation/readme_images/JigsawValidator.png)
   ![Jigsaw Validator]()
 - **Accessibility**: Lighthouse audit →
-  ![Lighthouse audit](documentation\readme_images\lighthouse.png)
+  ![Lighthouse audit](documentation/readme_images/lighthouse.png)
 
 ---
 
