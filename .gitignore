@@ -11,6 +11,7 @@ media/
 # Editor and IDE specific files
 .idea/
 .vscode/
+.flake8
 
 # Environment variables
 env.py
@@ -20,3 +21,5 @@ staticfiles/
 
 # Local settings
 local_settings.py
+.venv/
+venv/

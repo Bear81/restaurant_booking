@@ -74,8 +74,6 @@ Navigation is consistent across all pages:
 - **Typography**: Bootstrap defaults (clean and readable).
 - **Accessibility**: High-contrast buttons, semantic HTML.
 
-![Colour palette screenshot] (C:\Users\barry\Dev_Win\PP4\restaurant_booking\documentation\readme_images\colours.png "Colours")
-
 ## Features
 
 ### Implemented
