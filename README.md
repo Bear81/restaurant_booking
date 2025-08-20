@@ -1,512 +1,355 @@
-# Restaurant Booking System
+# Restaurant Booking App
 
-A Django-based web application for restaurant reservations, allowing users to browse the menu, book tables, and manage their bookings online. The application integrates with Cloudinary for media storage and uses Django Allauth for user authentication.
+A full-stack Django web application for managing restaurant reservations.  
+Built as part of the Code Institute Full Stack Software Development course (Portfolio Project 4).
+
+Deployed site: [Heroku Link](https://pp4-restaurant-booking-app-7cc89317a653.herokuapp.com)  
+Repository: [GitHub Repo](https://github.com/Bear81/restaurant_booking)
+
+---
 
 ## Table of Contents
 
-1. [Project Overview](#project-overview)
-2. [UX (User Experience)](#ux-user-experience)
-3. [Features](#features)
-4. [Technologies Used](#technologies-used)
-5. [Testing](#testing)
-6. [Deployment](#deployment)
-7. [Credits](#credits)
-8. [Acknowledgements](#acknowledgements)
+- [Project Overview](#project-overview)
+- [UX / Design](#ux--design)
+  - [Strategy](#strategy)
+  - [Scope](#scope)
+  - [Structure](#structure)
+  - [Surface](#surface)
+- [Features](#features)
+- [Data Model](#data-model)
+- [Agile Methodology](#agile-methodology)
+- [Testing](#testing)
+- [Technologies Used](#technologies-used)
+- [Deployment](#deployment)
+- [Credits](#credits)
+- [Acknowledgements](#acknowledgements)
 
 ---
 
 ## Project Overview
 
-The Restaurant Booking System is a full-stack web application built with Django. It allows users to book tables, view the restaurant menu, and manage their reservations. The application is designed with both end-users and administrators in mind, providing an easy-to-use interface for customers and a robust admin panel for restaurant staff.
+The Restaurant Booking App allows users to:
 
-## UX (User Experience)
+- Create an account and log in securely.
+- Make, update, and cancel bookings.
+- View current bookings in a responsive table.
+- Browse the restaurant menu.
 
-### Epics and User Stories
+Site owners can:
 
-**Epic: Booking System**
-
-- **User Registration and Login**
-
-  - As a user, I can register and create an account so that I can make bookings.
-  - As a user, I can log in to my account so that I can manage my bookings.
-
-- **Table Booking & Management**
-  - As a user, I can search for available tables based on date and time.
-  - As a user, I can select a table and make a reservation.
-  - As a user, I can view my upcoming and past bookings.
-  - As a user, I can cancel my bookings.
-  - As an admin, I can view all bookings.
-  - As an admin, I can manage tables (add, edit, delete).
-  - As an admin, I can confirm or reject bookings.
-
-**Epic: Restaurant Website**
-
-- **Restaurant Information & Menu**
-  - As a user, I can view and edit the restaurant's information (address, contact details, opening hours).
-  - As a user, I can view and edit the restaurant's menu.
+- Manage bookings in the Django admin.
+- Moderate menu items.
+- Control booking confirmation and table allocation.
 
 ---
 
-## Agile Methodology and Project Management
+## UX / Design
 
-![Trello Board](documentation/readme_images/trello.png)
+### Strategy
 
-The Agile methodology was employed to guide the development of this project. I utilized Trello as our project management tool, creating a Kanban board to visualize and track progress. The board was organized into the following sections:
+The app was designed for:
 
-- **Backlog**
-- **To Do**
-- **In Progress**
-- **Testing**
-- **Done**
+- **Customers** who want a quick way to reserve tables online.
+- **Restaurant staff** who need a reliable admin interface.
 
-Trello cards were used to represent User Stories, bug fixes, and other project tasks. Each card included a clear title, description, and any relevant labels or assignments.
+### Scope
 
-I divided the project into three distinct sprints, each with a defined timeline. User Stories were prioritized and assigned to specific sprints, ensuring a focused and manageable workload. While I successfully completed all planned sprints on time, three enhancement features were deferred to future development and are listed under "Future Features."
+- Core booking CRUD functionality.
+- Authentication with Django Allauth.
+- Responsive design for mobile-first use.
 
-Trello served as a valuable tool not only for tracking User Stories but also for documenting and addressing any bugs or updates throughout the development process.
+### Structure
 
-### Wireframes
+Navigation is consistent across all pages:
 
-Wireframes were created using Balsamiq to plan the layout and structure of the application. These wireframes guided the development process, ensuring a user-friendly design.
+- Home
+- Menu
+- Bookings (Profile)
+- Login/Logout/Signup
 
----
+### Surface
 
-## Design Choices
+- **Colours**: Neutral background with an orange accent (#e09f3e) for CTAs.
+- **Typography**: Bootstrap defaults (clean and readable).
+- **Accessibility**: High-contrast buttons, semantic HTML.
 
-### 1. **Color Palette**
-
-The color palette for this project was carefully selected to create a sleek, modern, and earthy aesthetic that aligns with the theme of a high-end restaurant. The colors chosen are intended to provide a dark, elegant backdrop, with contrasting elements that ensure readability and visual appeal. Below is the primary color palette used throughout the site:
-
-- **Primary Color**: `#2B2B2B` (Dark Charcoal)  
-  Used as the main background color for its sophisticated and minimalist appearance.
-- **Accent Color**: `#E09F3E` (Golden Orange)  
-  Utilized for call-to-action buttons, links, and other elements requiring emphasis, adding warmth and vibrancy to the design.
-- **Text Color**: `#E0E0E0` (Light Gray)  
-  The primary text color, chosen to contrast well with the dark background, ensuring readability.
-
-- **Link Color**: `#D5C3AA` (Soft Beige)  
-  Used for links and navigation items to provide a subtle, yet noticeable, contrast against the dark background.
-- **Hover Color**: `#D28E36` (Muted Gold)  
-  A slightly muted version of the accent color, used for hover states to create a smooth and cohesive interaction experience.
-
-- **Secondary Background Color**: `#5C5C5C` (Dim Gray)  
-  Applied to secondary sections and elements like footers to differentiate them from the main content without overwhelming the user.
-
-### 2. **Typography**
-
-The typography chosen for this project is designed to be clean and modern, ensuring that content is easy to read while maintaining a professional appearance. The primary font used is:
-
-- **Font**: `Arial, sans-serif`  
-  A classic, neutral font that complements the minimalist design approach.
-
-### 3. **Layout**
-
-The layout of the site follows a clean, grid-based structure, ensuring that content is well-organized and accessible across different devices. Key layout decisions include:
-
-- **Responsive Design**: The site is fully responsive, ensuring a seamless experience on both desktop and mobile devices.
-- **Grid System**: Bootstrap's grid system is employed to create a flexible, consistent layout across all pages.
-- **Content Hierarchy**: Clear visual hierarchy is established through the use of varying font sizes, bold text for headings, and sufficient spacing between elements.
-
-### 4. **Visual Elements**
-
-- **Images**: High-quality, visually appealing images are used throughout the site, with consistent sizing and placement to maintain a uniform look and feel.
-- **Buttons**: Call-to-action buttons are styled with the accent color and are strategically placed to guide users through the site’s key actions, such as booking a table or exploring the menu.
-
-### 5. **Accessibility Considerations**
-
-- **Contrast**: Text and interactive elements maintain a high contrast ratio against the background to ensure readability for users with visual impairments.
-- **Alt Text**: All images include descriptive alt text to improve accessibility for screen readers.
-
-### 6. **User Experience**
-
-The user experience is designed to be intuitive and enjoyable, with a focus on making it easy for users to navigate the site, find information, and complete actions such as making a booking or exploring the menu. This is achieved through:
-
-- **Clear Navigation**: A simple, easy-to-use navigation bar is present on all pages.
-- **Consistent Design**: Consistency in design elements such as colors, typography, and layout helps users feel familiar and comfortable as they interact with different parts of the site.
-
-### 7. **Future Enhancements**
-
-Looking ahead, there are several design enhancements that could further improve the user experience, such as:
-
-- **Update Admin UI**: Adding more controls and filtering option to allow superusers to complete tasks efficiently
-- **Social Logins**: Introducing social logins to streamline the booking process.
-- **Email Confirmations**: Add email functionality to confirm books, changes and cancellations
-
----
-
-This section outlines the key design choices that were made to create a visually appealing, functional, and accessible website. Each decision was made with the end user in mind, ensuring that the site not only looks great but also provides a seamless and enjoyable experience.
+![Colour palette screenshot] (C:\Users\barry\Dev_Win\PP4\restaurant_booking\documentation\readme_images\colours.png "Colours")
 
 ## Features
 
-### Implemented Features
+### Implemented
 
-### Navigation (Nav)
+- **Authentication**: signup, login, logout.
+- **Bookings CRUD**:
+  - Create booking (date/time validation).
+  - View bookings table.
+  - Update booking (status resets to pending).
+  - Cancel booking.
+- **Menu browsing** with Back button on detail pages.
+- **Profile welcome message** with logged-in user’s name.
+- **Sticky footer** on all pages.
 
-The navigation bar is prominently displayed across the top of every page, providing users with easy access to all major sections of the site. It includes links to the Home, Menus, About Us, Contact Us, Profile, Login, and Signup pages, ensuring a seamless browsing experience.
+![signup](documentation\readme_images\signup_page.png)
+![Login](documentation\readme_images\login_page.png)
+![logout](documentation\readme_images\logout_confirmation.png)
+![Create Booknig](documentation\readme_images\booking_form.png)
+![Update Booking](documentation\readme_images\update_booking.png)
+![View Booking](documentation\readme_images\profile_your_bookings.png)
+![Menu](documentation\readme_images\menu_list_page.png)
+![Menu Detail](documentation\readme_images\menu_detail.png)
 
-![Nav Bar](documentation/readme_images/nav_bar.png)
+### Future Features
 
-### Home Page Layout
+- Email confirmations/reminders.
+- Staff dashboard with analytics.
+- Event/special menu support.
 
-The Home page features a welcoming hero section with a background image, title, and call-to-action button. Below, it showcases featured dishes in a grid layout, followed by customer testimonials to build trust and appeal.
+---
 
-![Home Page Layout](documentation/readme_images/home_page.png)
+## Data Model
 
-### Menu Page
+The main model is **Booking** with fields:
 
-The Menu page displays all available menus in a series of long cards. Each card contains an image, title, and a brief description of the menu, inviting users to explore the details of the restaurant’s offerings.
+- `user`
+- `booking_datetime`
+- `number_of_guests`
+- `status`
+- `table`
+- `special_requests`
 
-![Our Menus](documentation/readme_images/our-menus.png)
+Relationships:
 
-### About Us Page
+- One User → Many Bookings.
+- Bookings may be linked to Tables.
 
-The About Us page provides a glimpse into the restaurant's history and values, with sections dedicated to the team, the restaurant’s journey, and a photo gallery that highlights the ambiance and experience.
+![ERD](documentation\readme_images\db_diagram.png)
 
-### Book Now/Contact Us Page
+---
 
-The Contact Us page combines essential contact details with a booking form, allowing users to get in touch or make a reservation easily. It includes fields for email, phone number, and address, all styled for clarity and accessibility.
+## Agile Methodology
 
-### Login Page
+The project was managed using Agile principles:
 
-The Login page offers a simple, secure form for users to sign into their accounts. The design is clean and straightforward, focusing on providing a hassle-free login experience.
+- User stories captured in GitHub Projects.
+- Tasks moved across _To Do → In Progress → Review → Done_.
+- Iterative development with frequent testing.
 
-### Profile Page
+![Github Project Board](documentation\readme_images\github_project.png)
+![Github Project Card](documentation\readme_images\github_project_card.png)
 
-The Profile page allows users to view and manage their bookings. It lists current reservations with options to edit or cancel them, ensuring users have full control over their dining plans.
+[Github Project Board](https://github.com/users/Bear81/projects/7/views/1)
 
-![Profile Page and Booking](documentation/readme_images/bookings.png)
-
-### Signup Page
-
-The Signup page features a user-friendly registration form that enables new users to create an account quickly. The page is designed with simplicity in mind, guiding users through the process with clear instructions and fields.
-
-## Technologies Used
-
-- **Django**: The main web framework used to build the application.
-- **HTML/CSS/JavaScript**: For structuring, styling, and adding interactivity to the web pages.
-- **Bootstrap**: For responsive design and UI components.
-- **PostgreSQL**: The database management system used in production.
-- **SQLite**: Used as the database during development.
-- **Cloudinary**: For media storage and management.
-- **Django Allauth**: For handling user authentication.
-- **Heroku**: For deploying the application to the cloud.
-- **Git/GitHub**: For version control and repository hosting.
-
-## Project Dependencies
-
-### Core Django Packages
-
-- **Django==4.2.15**: The web framework used to build the application, providing tools for routing, views, ORM, and more.
-- **django-allauth==64.1.0**: A Django app for handling user authentication, registration, and account management, with support for social logins.
-- **django-crispy-forms==2.3**: Provides tools to easily style Django forms using a chosen CSS framework, such as Bootstrap.
-- **django-summernote==0.8.20.0**: A WYSIWYG editor integrated into Django forms, allowing rich text editing capabilities within the admin and forms.
-- **sqlparse==0.5.1**: A library used by Django for parsing SQL queries, especially useful in the Django admin and ORM.
-
-### Deployment and Database Management
-
-- **gunicorn==20.1.0**: A Python WSGI HTTP Server for running Django applications in production.
-- **psycopg2==2.9.9**: A PostgreSQL adapter for Python, used to connect Django to a PostgreSQL database.
-- **dj-database-url==0.5.0**: Allows configuring the Django database connection using a single URL, simplifying database setup, especially in deployment environments.
-- **whitenoise==6.5.0**: Simplifies serving static files in Django applications, making it easier to deploy to platforms like Heroku.
-
-### Cloudinary Integration
-
-- **cloudinary==1.36.0**: Python SDK for integrating Cloudinary, used to manage and deliver media assets like images and videos.
-- **dj3-cloudinary-storage==0.0.6**: A Django storage backend for Cloudinary, allowing media files to be uploaded directly to Cloudinary from the Django application.
-
-### HTML and Form Handling
-
-- **bleach==4.1.0**: A library for sanitizing HTML, often used to clean up user input to prevent XSS attacks.
-- **django-summernote==0.8.20.0**: A WYSIWYG editor integrated into Django forms, allowing rich text editing capabilities within the admin and forms.
-
-### HTTP and Request Handling
-
-- **requests==2.32.3**: A simple and intuitive HTTP library used for making HTTP requests in Python applications.
-- **urllib3==1.26.19**: A powerful HTTP library for Python, often used by `requests` for managing connections and requests.
-- **idna==3.8**: Provides support for Internationalized Domain Names (IDN), used in handling URLs in requests.
-
-### Utility Libraries
-
-- **asgiref==3.8.1**: A reference implementation of the ASGI (Asynchronous Server Gateway Interface) standard, used by Django for async support.
-- **certifi==2024.7.4**: Provides a curated collection of Root Certificates for SSL/TLS verification, ensuring secure HTTP connections.
-- **charset-normalizer==3.3.2**: Used for detecting and normalizing character encodings, ensuring text data is correctly processed.
-- **six==1.16.0**: A utility library for writing Python code that is compatible with both Python 2 and 3.
-- **packaging==24.1**: Provides utilities for parsing and handling package versions and dependencies in Python projects.
-- **typing_extensions==4.12.2**: Provides backports of new type system features in Python, helping maintain compatibility across Python versions.
-- **webencodings==0.5.1**: A library for handling character encodings used in web documents, especially relevant in HTML parsing and rendering.
-
-## Database Diagram
-
-![Database Diagram](documentation/readme_images/db_diagram.png)
+---
 
 ## Testing
 
 ### Manual Testing
 
-## ✅ Manual Testing
+Each feature was manually tested.
 
-All features were manually tested using the following format:
+Example (Bookings CRUD):
 
-- **Feature:** The feature being tested
-- **Test Type:** Happy path / Invalid path / Edge case
-- **Test Steps:** Steps taken during the test
-- **Expected Result:** What should happen
-- **Actual Result:** What actually happened
-- **Status:** ✅ Pass / ❌ Fail
+| Feature              | Action                 | Expected Result                 | Actual Result     | Pass/Fail |
+| -------------------- | ---------------------- | ------------------------------- | ----------------- | --------- |
+| Create booking       | Select valid date/time | Booking created                 | Works as expected | ✅        |
+| Prevent past booking | Select past date       | Error shown                     | Works as expected | ✅        |
+| Edit booking         | Change guests          | Booking updates & status resets | Works as expected | ✅        |
+| Cancel booking       | Click cancel           | Booking removed                 | Works as expected | ✅        |
 
----
-
-### 🧭 User Features
-
-#### 🧪 Feature: Booking a Table
-
-**Test Type:** Happy Path  
-**Steps:**
-
-- Login as test user
-- Navigate to "Book a Table"
-- Enter valid data (date, time, guest count)
-- Submit form  
-  **Expected:** Booking is saved, success message appears  
-  **Actual:** Booking saved and visible on profile  
-  **Status:** ✅ Pass
+This document records the manual testing process for the Restaurant Booking App.  
+It follows the structure required by the Code Institute assessment criteria.
 
 ---
 
-#### 🧪 Feature: Booking with Invalid Guest Count
+## Table of Contents
 
-**Test Type:** Invalid Path  
-**Steps:**
-
-- Attempt to book for more than allowed guests  
-  **Expected:** Validation error shown  
-  **Actual:** Validation error shown, booking not saved  
-  **Status:** ✅ Pass
-
----
-
-#### 🧪 Feature: Cancel Booking
-
-**Test Type:** Happy Path  
-**Steps:**
-
-- Visit Profile page
-- Click "Cancel" next to a booking  
-  **Expected:** Booking deleted, message shown  
-  **Actual:** Booking deleted successfully  
-  **Status:** ✅ Pass
+- [User Story Testing](#user-story-testing)
+- [Feature Testing](#feature-testing)
+- [Validator Testing](#validator-testing)
+- [Responsiveness Testing](#responsiveness-testing)
+- [Browser Compatibility](#browser-compatibility)
+- [Known Issues / Bugs](#known-issues--bugs)
 
 ---
 
-#### 🧪 Feature: View Profile Without Login
+## User Story Testing
 
-**Test Type:** Invalid Path  
-**Steps:**
-
-- Navigate to /profile/ without logging in  
-  **Expected:** Redirected to login page  
-  **Actual:** Redirected as expected  
-  **Status:** ✅ Pass
-
----
-
-### 🔐 Authentication & Navigation
-
-#### 🧪 Feature: Login
-
-**Test Type:** Happy Path  
-**Steps:**
-
-- Click "Login"
-- Enter valid credentials  
-  **Expected:** Redirected to homepage, nav updates  
-  **Actual:** Login successful, nav updated  
-  **Status:** ✅ Pass
+| User Story                            | Expected Behaviour                 | Action Taken             | Result                  | Pass/Fail |
+| ------------------------------------- | ---------------------------------- | ------------------------ | ----------------------- | --------- |
+| As a new user, I want to sign up      | I can register with email/username | Went to /accounts/signup | Account created         | ✅        |
+| As a user, I want to log in           | I can log in and see bookings      | Used login form          | Redirected to profile   | ✅        |
+| As a user, I want to make a booking   | Select date/time, guests           | Submitted booking form   | Booking appears in list | ✅        |
+| As a user, I want to cancel a booking | Cancel button removes booking      | Clicked Cancel           | Booking deleted         | ✅        |
+| As a user, I want to edit a booking   | I can change guests/time           | Edited booking           | Status reset to pending | ✅        |
 
 ---
 
-#### 🧪 Feature: Logout
+## Feature Testing
 
-**Test Type:** Happy Path  
-**Steps:**
+### Authentication
 
-- Click "Logout"  
-  **Expected:** Redirect to homepage or login page  
-  **Actual:** Logout successful  
-  **Status:** ✅ Pass
+| Feature  | Action       | Expected Result      | Actual Result | Pass/Fail |
+| -------- | ------------ | -------------------- | ------------- | --------- |
+| Signup   | Fill form    | Account created      | Works         | ✅        |
+| Login    | Fill form    | Logged in            | Works         | ✅        |
+| Logout   | Click logout | Redirected home      | Works         | ✅        |
+| Redirect | Log in       | Redirect to bookings | Works         | ✅        |
 
----
+### Bookings
 
-#### 🧪 Feature: Navbar Display for Guest
+| Feature              | Action          | Expected Result | Actual Result | Pass/Fail |
+| -------------------- | --------------- | --------------- | ------------- | --------- |
+| Create booking       | Valid date/time | Booking saved   | Works         | ✅        |
+| Prevent past booking | Enter past date | Error message   | Works         | ✅        |
+| Edit booking         | Update guests   | Status reset    | Works         | ✅        |
+| Cancel booking       | Click cancel    | Booking removed | Works         | ✅        |
 
-**Test Type:** UI  
-**Steps:**
+### Menu
 
-- Visit site as logged-out user  
-  **Expected:** "Login" shown, "Profile"/"Logout" hidden  
-  **Actual:** Nav items shown correctly  
-  **Status:** ✅ Pass
-
----
-
-### 📄 Contact & Info Pages
-
-#### 🧪 Feature: Visit Contact Page
-
-**Test Type:** Static Page  
-**Steps:** Click "Contact"  
-**Expected:** Page loads correctly  
-**Actual:** Contact page loaded  
-**Status:** ✅ Pass
+| Feature     | Action     | Expected Result           | Actual Result | Pass/Fail |
+| ----------- | ---------- | ------------------------- | ------------- | --------- |
+| Menu list   | Visit page | Menu items displayed      | Works         | ✅        |
+| Menu detail | Click item | Item detail + back button | Works         | ✅        |
 
 ---
 
-#### 🧪 Feature: Visit About Page
+## Validator Testing
 
-**Test Type:** Static Page  
-**Steps:** Click "About"  
-**Expected:** Page loads correctly  
-**Actual:** About page loaded  
-**Status:** ✅ Pass
+- **HTML**: W3C Validator →
+  ![W3C Validator](documentation\readme_images\W3CValidator.png)
 
----
-
-### 🧱 Media and Static Files
-
-#### 🧪 Feature: Load Static CSS/JS
-
-**Test Type:** UI  
-**Steps:** Open any page  
-**Expected:** Page is styled and functional  
-**Actual:** Static files load correctly  
-**Status:** ✅ Pass
+- **CSS**: Jigsaw Validator →
+  ![Jigsaw Validator](documentation\readme_images\JigsawValidator.png)
+  ![Jigsaw Validator]()
+- **Accessibility**: Lighthouse audit →
+  ![Lighthouse audit](documentation\readme_images\lighthouse.png)
 
 ---
 
-#### 🧪 Feature: View Uploaded Images (Production Only)
+## Responsiveness Testing
 
-**Test Type:** Prod Environment  
-**Steps:** View booking with image (in prod)  
-**Expected:** Image served via Cloudinary  
-**Actual:** Image visible in production  
-**Status:** ✅ Pass
+Tested using Chrome DevTools and real devices.
 
----
-
-### 🛠 Django Admin (Optional)
-
-#### 🧪 Feature: Access Django Admin
-
-**Test Type:** Admin  
-**Steps:** Visit /admin/ and login with superuser  
-**Expected:** Admin dashboard loads  
-**Actual:** Admin accessible  
-**Status:** ✅ Pass
+| Device         | Page      | Result |
+| -------------- | --------- | ------ |
+| iPhone X       | Home      | ✅     |
+| iPhone X       | Bookings  | ✅     |
+| iPad           | Menu      | ✅     |
+| Windows Laptop | All pages | ✅     |
 
 ---
 
-### ✅ Summary
+## Browser Compatibility
 
-All major features were tested using valid and invalid inputs. The application responds appropriately with success messages, validation errors, and secure redirections. Navigation, forms, and static file handling were verified across the full user journey.
+| Browser | Version | Result |
+| ------- | ------- | ------ |
+| Chrome  | Latest  | ✅     |
+| Edge    | Latest  | ✅     |
+| Firefox | Latest  | ✅     |
+| Safari  | iOS     | ✅     |
 
-### Automated Testing
+---
 
-Automated tests were written for the models, views, and forms using Django’s built-in testing tools. These tests ensure that:
+## Known Issues / Bugs
 
-- Models correctly handle data validation and relationships.
-- Views render the correct templates and handle form submissions as expected.
-- Forms enforce correct validation rules.
+- [ ] Signup form styling could be further polished.
+- [ ] High-contrast button colours still need design refinement.
 
-### Bugs and Fixes
+---
 
-During development, several bugs were encountered:
+### Validator Testing
 
-- **Bug**: Incorrect redirect after booking creation.
-  - **Fix**: Updated the view to redirect to the booking list instead of a template.
+- **HTML**: W3C Validator → Pass.
+- **CSS**: Jigsaw Validator → Pass.
+- **Python**: flake8 → Pass.
+- **Accessibility**: Lighthouse audit → Good contrast and structure.
+
+### Responsiveness
+
+Tested on:
+
+- Chrome DevTools (mobile + tablet + desktop).
+- Real devices (Android + Windows laptop).
+
+Results: layout adapts, footer sticky, no horizontal overflow.
+
+### Bugs Fixed
+
+- **Naive vs Aware datetime bug** → fixed with timezone-aware validation.
+- **Floating footer** → fixed with flexbox layout.
+- **Low contrast auth forms** → styled in `fixes.css`.
+
+---
+
+## Technologies Used
+
+- Django 4.2
+- Bootstrap 4
+- PostgreSQL (Heroku) / SQLite (dev)
+- Cloudinary (media storage)
+- Django Allauth (auth)
+- Django Summernote (content editor)
+- Heroku (deployment)
+
+---
 
 ## Deployment
 
-### Project Setup and Development
+### Local Deployment
 
-This project was initiated on GitHub and developed in VS Code. The following steps outline the setup and development process:
-
-1. A new repository was created - NO template used.
-2. The repository was given a meaningful name and created on GitHub.
-3. The repository was then opened in VS Code via wls2 and a virtual environment.
-4. Version control was maintained throughout the project using the following Git commands:
-   - `git add .` or `git add "file name"`: Stages changes for commit.
-   - `git commit -m "Description of the update"`: Commits the staged changes to the local repository.
-   - `git push`: Pushes committed changes to the GitHub repository.
+1. Clone repo:
+   ```bash
+   git clone https://github.com/Bear81/restaurant_booking.git
+   cd restaurant_booking
+   ```
+2. Install dependencies:
+   ```bash
+   pip install -r requirements.txt
+   ```
+3. Create `env.py` with variables:
+   ```python
+   import os
+   os.environ["SECRET_KEY"] = "your_secret_key"
+   os.environ["DEBUG"] = "1"
+   os.environ["DATABASE_URL"] = "sqlite://..."
+   ```
+4. Run migrations:
+   ```bash
+   python manage.py migrate
+   ```
+5. Run server:
+   ```bash
+   python manage.py runserver
+   ```
 
 ### Heroku Deployment
 
-The project was deployed on Heroku, and the live application can be accessed [here](https://pp4-restaurant-booking-app-7cc89317a653.herokuapp.com/). Below are the key steps involved in deploying this project using the Heroku platform.
+1. Create Heroku app & link GitHub repo.
+2. Set Config Vars:
+   - `SECRET_KEY`
+   - `DATABASE_URL`
+   - `CLOUDINARY_CLOUD_NAME`, `CLOUDINARY_API_KEY`, `CLOUDINARY_API_SECRET`
+   - `DEBUG=0`
+   - `ALLOWED_HOSTS=.herokuapp.com,localhost,127.0.0.1`
+3. Deploy via GitHub → Heroku.
+4. Run migrations on Heroku:
+   ```bash
+   heroku run python manage.py migrate
+   ```
 
-1. **Prepare for Deployment:**
+---
 
-   - Ensure all dependencies are listed in `requirements.txt` by running `pip3 freeze > requirements.txt`.
-   - Create a `Procfile` with the content: `web: gunicorn projectname.wsgi`.
+## Credits
 
-2. **Create .slugignore File:**
+- Bootstrap docs for layout.
+- Cloudinary for media hosting.
+- Code Institute course material.
+- Stack Overflow & Django docs for bug fixes.
+- Favicon assets from [favicon.io](https://favicon.io/).
 
-   - Add `/documentation`, `README.md`, and `TESTING.md` to `.slugignore` to prevent these files from being uploaded to Heroku.
+---
 
-3. **Using the Heroku CLI:**
+## Acknowledgements
 
-   - **Login:** Run `heroku login -i` to authenticate the CLI with your Heroku account.
-   - **Create an App:** Run `heroku create myappname` to create a new app, ensuring the app name is unique.
-
-4. **Static and Media Files:**
-   - Integrate Cloudinary for media file storage by installing `cloudinary` and adding the Cloudinary URL to the environment variables.
-   - Configure static and media file settings in `settings.py` to use Cloudinary for storage.
-
-### Local Deployment
-
-You can also deploy the project locally using one of the following methods:
-
-1. **Forking the Repository:**
-
-   - Log in to your GitHub account and navigate to the repository.
-   - Click the 'Fork' button to create a copy of the repository in your GitHub account.
-
-2. **Cloning the Repository with GitPod:**
-
-   - Copy the repository URL from the 'Code' button on GitHub.
-   - Open a new GitPod workspace and clone the repository using `git clone [URL]`.
-
-3. **Using GitHub Desktop:**
-   - Click the 'Code' button and select 'Open with GitHub Desktop' to clone the repository locally.
-   - Follow the prompts to install GitHub Desktop if necessary.
-
-## Resources and References
-
-### Inspiration and Learning
-
-Throughout the development of this project, several key resources provided both inspiration and practical guidance:
-
-- **Code Institute's "I Think Therefore I Blog"**: This course module was instrumental in setting up the core components of the site.
-- **Django Blog Tutorial**: A comprehensive guide that helped in structuring the initial foundation of this project.
-- \*\*
-
-### Helpful Tools and Guides
-
-During development, these resources were invaluable in solving challenges and optimizing the project:
-
-- **W3Schools - Python**: A go-to reference for Python syntax and examples.
-- **Stack Overflow**: An essential resource for troubleshooting code issues and finding quick solutions.
-- **Django Documentation**: The official Django documentation was frequently referenced for understanding framework features and best practices.
-- **Django Testing Resources**: Various guides on Django testing, including cheat sheets and detailed explanations, were used to ensure the reliability of the application.
-- **Django User Profile Management**: Guides and examples on managing user profiles within Django, including integration with Django Allauth.
-- **Summernote**: Implemented for rich text editing within the application.
-
-### Special Mentions
-
-This project could not have been completed without the support and advice from the following:
-
-- **Code Institute Community**: The Slack community was a great source of support, offering help and encouragement throughout the development process.
-- **Stack Overflow Contributors**: The Stack Overflow community played a crucial role in overcoming some of the more challenging coding obstacles.
-- **Google**: Countless searches provided answers to specific problems and offered insights into best practices.
-
-### Final Thoughts
-
-Developing this project was a challenging but rewarding experience, made possible by the wealth of resources available online and the support of the development community. Every piece of advice, tutorial, and snippet of code contributed to the final product, and I am grateful for all the help received along the way.
+Thanks to Code Institute mentors, assessors, and peers for support during development.

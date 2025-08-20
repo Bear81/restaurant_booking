@@ -1,0 +1,6 @@
+[flake8]
+max-line-length = 100
+exclude = .git,__pycache__,.venv,venv,migrations,static,staticfiles,manage.py
+per-file-ignores =
+    # Allow settings and wsgi to be a bit noisier
+    restaurant_booking/settings.py:E501
